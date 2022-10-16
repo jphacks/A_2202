@@ -43,3 +43,4 @@
 - branch
   - feature/github-name/xxxx
 - issue -> PR -> develop -> main(deploy)
+- [prefix rule](https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#type)
