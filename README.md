@@ -38,3 +38,8 @@
 #### 製品に取り入れた研究内容（データ・ソフトウェアなど）（※アカデミック部門の場合のみ提出必須）
 * 
 * 
+
+### 開発手順
+- branch
+  - feature/github-name/xxxx
+- issue -> PR -> develop -> main(deploy)
