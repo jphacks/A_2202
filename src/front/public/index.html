@@ -1,52 +1,3 @@
-<!-- <!DOCTYPE html>
-<html>
-  <head>
-    <title>AR.js A-Frame</title>
-    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
-    <script src="https://raw.githack.com/AR-js-org/AR.js/master/three.js/build/ar-threex-location-only.js"></script>
-    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
-    <script src="index.js"></script>
-  </head>
-  <body style="margin: 0; overflow: hidden">
-    <a-scene
-      cursor="rayOrigin: mouse; fuse: true; fuseTimeout: 0;"
-      raycaster="objects: [gps-entity-place];"
-      vr-mode-ui="enabled: false"
-      embedded
-      arjs="sourceType: webcam; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960; debugUIEnabled: false;"
-    >
-      <a-camera
-        gps-camera
-        rotation-reader
-        gps-new-camera="gpsMinDistance: 5"
-      ></a-camera>
-    </a-scene>
-    <a-scene
-      vr-mode-ui="enabled: false"
-      arjs="sourceType: webcam; videoTexture: true; debugUIEnabled: false"
-      renderer="antialias: true; alpha: true"
-    >
-      <a-camera gps-new-camera="gpsMinDistance: 5"></a-camera>
-    </a-scene>
-    <div
-      id="setloc"
-      style="
-        position: absolute;
-        left: 10px;
-        bottom: 2%;
-        z-index: 999;
-        background-color: blue;
-        color: white;
-        padding: 10px;
-      "
-    >
-      Lat:<input id="lat" value="37.4920213" /> Lon:
-      <input id="lon" value="139.9446211" /> Min Acc:
-      <input id="minacc" value="1000" />
-      <input type="button" id="go" value="go" />
-    </div>
-  </body>
-</html> -->
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -61,13 +12,13 @@
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
     <title>React App</title>
-    <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+    <!-- <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
     <script src="https://unpkg.com/aframe-look-at-component@1.0.0/dist/aframe-look-at-component.min.js"></script>
-    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script>
+    <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar-nft.js"></script> -->
   </head>
   <body style="margin: 0; overflow: hidden">
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <a-scene
+    <!-- <a-scene
       vr-mode-ui="enabled: false"
       embedded
       arjs="sourceType: webcam; debugUIEnabled: false;"
@@ -98,7 +49,7 @@
         },
         false
       );
-    </script>
+    </script> -->
     <div id="root"></div>
   </body>
 </html>
