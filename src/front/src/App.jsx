@@ -15,116 +15,130 @@ import { Entity, Scene } from "aframe-react";
 function App() {
   const ref = useRef();
   useEffect(() => {
+    let lat, lon;
+    navigator.geolocation.getCurrentPosition(data => {
+      lat = data.coords.latitude;
+      lon = data.coords.longitude;
+      console.log(lat + " " + lon);
+    });
     console.log(ref);
+    const entity = document.getElementsByTagName("a-box");
+    entity.setAttribute("gps-new-entity-place", {
+      latitude: lat,
+      longitude: lon,
+    });
   });
   return (
     <div>
-      {/* <Scene>
-        <a-assets>
-          <img
-            id="groundTexture"
-            src="https://cdn.aframe.io/a-painter/images/floor.jpg"
-            alt=""
-          />
-          <img
-            id="skyTexture"
-            src="https://cdn.aframe.io/a-painter/images/sky.jpg"
-            alt=""
-          />
-        </a-assets>
-
-        <Entity
-          primitive="a-plane"
-          src="#groundTexture"
-          rotation="-90 0 0"
-          height="100"
-          width="100"
+      <a-scene arjs="sourceType: webcam; debugUIEnabled: false;">
+        <a-box
+          material="color: yellow"
+          gps-entity-place="latitude: 37.5232359; longitude: 139.9393498"
         />
-        <Entity primitive="a-light" type="ambient" color="#445451" />
-        <Entity
-          primitive="a-light"
-          type="point"
-          intensity="2"
-          position="2 4 4"
-        />
-        <Entity
-          primitive="a-sky"
-          height="2048"
-          radius="30"
-          src="#skyTexture"
-          theta-length="90"
-          width="2048"
-        />
-        <Entity particle-system={{ preset: "snow", particleCount: 2000 }} />
-        <Entity
-          primitive="a-text"
-          text={{
-            value: "Hello, A-Frame React!",
-            align: "center",
-            color: "red",
-          }}
-          position={{ x: 0, y: 2, z: -1 }}
-        />
-
-        <Entity
-          id="box"
-          geometry={{ primitive: "box" }}
-          material={{ color: "red", opacity: 0.6 }}
-          animation__rotate={{
-            property: "rotation",
-            dur: 2000,
-            loop: true,
-            to: "360 360 360",
-          }}
-          animation__scale={{
-            property: "scale",
-            dir: "alternate",
-            dur: 100,
-            loop: true,
-            to: "1.1 1.1 1.1",
-          }}
-          position={{ x: 0, y: 1, z: -3 }}
-        >
-          <Entity
-            animation__scale={{
-              property: "scale",
-              dir: "alternate",
-              dur: 100,
-              loop: true,
-              to: "2 2 2",
-            }}
-            geometry={{ primitive: "box", depth: 0.2, height: 0.2, width: 0.2 }}
-            material={{ color: "#24CAFF" }}
-          />
-        </Entity>
-
-        <Entity primitive="a-camera" gps-camera rotation-reader>
-          <Entity
-            primitive="a-cursor"
-            animation__click={{
-              property: "scale",
-              startEvents: "click",
-              from: "0.1 0.1 0.1",
-              to: "1 1 1",
-              dur: 150,
-            }}
-          />
-        </Entity>
-      </Scene> */}
-
-      <a-scene
-        vr-mode-ui="enabled: false"
-        embedded
-        arjs="sourceType: webcam; debugUIEnabled: false;"
-      >
-        <a-text
-          ref={ref}
-          // value="This content will always face you."
-          // look-at="[gps-camera]"
-          // scale="30 30 30"
-          // gps-entity-place="latitude: 37.492151723031024; longitude: 139.94461074269023;"
+        {/* <a-text
+          value="Hello, World 001 opacity"
+          color="black"
+          width="5"
+          opacity="0.3"
+          gps-entity-place="latitude: 37.5232294; longitude: 139.9393575;"
         ></a-text>
-        <a-camera gps-camera rotation-reader></a-camera>
+        <a-text
+          position="-1 1 -3"
+          value="Hello, World 001 small"
+          color="black"
+          width="3"
+        ></a-text>
+        <a-text
+          position="-1 0.5 -3"
+          value="Hello, World 001"
+          color="black"
+          width="5"
+        ></a-text>
+
+        <a-text
+          position="-4 1 -3"
+          value="Hello, World 002 small"
+          color="black"
+          font="dejavu"
+          scale="0.5 0.5 0.5"
+        ></a-text>
+        <a-text
+          position="-4 0.5 -3"
+          value="Hello, World 002"
+          color="black"
+          font="dejavu"
+        ></a-text>
+
+        <a-text
+          position="3 1.6 -5"
+          value="Hello, World 003 small"
+          color="black"
+          font="kelsonsans"
+        ></a-text>
+        <a-text
+          position="2 0.5 -3"
+          value="Hello, World 003"
+          color="black"
+          font="kelsonsans"
+        ></a-text>
+
+        <a-entity
+          position="0 3.5 -4"
+          geometry="primitive: plane; width: 5"
+          material="color: #EF2D5E"
+          text="color: white; align: center; font: dejavu;
+        value: Hello, World 005\nHello, World 005;"
+        ></a-entity>
+
+        <a-entity
+          position="0 -1 -4"
+          geometry="primitive: plane; width: 5"
+          material="color: #EF2D5E"
+          text="color: white; align: center; font: dejavu;
+        value: Hello, World 006;"
+        >
+          <a-animation
+            begin="click"
+            attribute="scale"
+            dur="500"
+            easing="ease-in-sine"
+            to="2 2 2"
+          ></a-animation>
+          <a-animation
+            begin="mouseleave"
+            attribute="scale"
+            delay="500"
+            to="1 1 1"
+          ></a-animation>
+        </a-entity>
+
+        <a-entity camera look-controls wasd-controls>
+          <a-entity
+            cursor="fuse: true;"
+            position="0 0 -1"
+            geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+            material="color: black; shader: flat"
+          >
+            <a-animation
+              begin="click"
+              easing="ease-in"
+              attribute="scale"
+              dur="150"
+              fill="forwards"
+              from="0.1 0.1 0.1"
+              to="1 1 1"
+            ></a-animation>
+            <a-animation
+              begin="cursor-fusing"
+              easing="ease-in"
+              attribute="scale"
+              dur="1500"
+              fill="backwards"
+              from="1 1 1"
+              to="0.1 0.1 0.1"
+            ></a-animation>
+          </a-entity>
+        </a-entity> */}
       </a-scene>
     </div>
   );
