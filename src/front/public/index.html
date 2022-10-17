@@ -1,21 +1,26 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html>
   <head>
     <title>AR.js A-Frame</title>
     <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
-    <!-- <script
-      type="text/javascript"
-      src="../node_modules/@ar-js-org/ar.js/three.js/build/ar-threex-location-only.js"
-    ></script> -->
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/three.js/build/ar-threex-location-only.js"></script>
-    <!-- <script
-      type="text/javascript"
-      src="../node_modules/@ar-js-org/ar.js/aframe/build/aframe-ar.js"
-    ></script> -->
     <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
     <script src="index.js"></script>
   </head>
-  <body>
+  <body style="margin: 0; overflow: hidden">
+    <a-scene
+      cursor="rayOrigin: mouse; fuse: true; fuseTimeout: 0;"
+      raycaster="objects: [gps-entity-place];"
+      vr-mode-ui="enabled: false"
+      embedded
+      arjs="sourceType: webcam; sourceWidth:1280; sourceHeight:960; displayWidth: 1280; displayHeight: 960; debugUIEnabled: false;"
+    >
+      <a-camera
+        gps-camera
+        rotation-reader
+        gps-new-camera="gpsMinDistance: 5"
+      ></a-camera>
+    </a-scene>
     <a-scene
       vr-mode-ui="enabled: false"
       arjs="sourceType: webcam; videoTexture: true; debugUIEnabled: false"
@@ -35,14 +40,14 @@
         padding: 10px;
       "
     >
-      Lat:<input id="lat" value="51.049" /> Lon:
-      <input id="lon" value="-0.723" /> Min Acc:
+      Lat:<input id="lat" value="37.4920213" /> Lon:
+      <input id="lon" value="139.9446211" /> Min Acc:
       <input id="minacc" value="1000" />
       <input type="button" id="go" value="go" />
     </div>
   </body>
-</html>
-<!-- <!DOCTYPE html>
+</html> -->
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8" />
@@ -75,6 +80,25 @@
       ></a-text>
       <a-camera gps-camera rotation-reader></a-camera>
     </a-scene>
+    <script>
+      const entity = document.getElementsByTagName("canvas");
+      // let lat, lon;
+      // navigator.geolocation.getCurrentPosition((data) => {
+      //   lat = data.coords.latitude;
+      //   lon = data.coords.longitude;
+      // });
+      // entity.setAttribute("gps-new-entity-place", {
+      //   latitude: lat,
+      //   longitude: lon,
+      // });
+      entity[0].addEventListener(
+        "click",
+        () => {
+          window.alert("aaaaaa");
+        },
+        false
+      );
+    </script>
     <div id="root"></div>
   </body>
-</html> -->
+</html>
