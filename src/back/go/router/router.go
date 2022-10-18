@@ -26,15 +26,13 @@ func Init(e *echo.Echo) {
 
 	r.withNone(e)
 
-	// 簡易版
-	e.GET("/hello", func(c echo.Context) error {
-		return c.String(http.StatusOK, "oyasumi dayo")
-	})
-
 	e.Logger.Fatal(e.Start(":8080"))
 }
 
 func (r V1) withNone(e *echo.Echo) {
+	e.GET("/hello", func(c echo.Context) error {
+		return c.String(http.StatusOK, "oyasumi dayo")
+	})
 	e.GET("/users", r.userHandler.Index)
 	e.GET("/realestate", r.realestateHandler.Index)
 }
