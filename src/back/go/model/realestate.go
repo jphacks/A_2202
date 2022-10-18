@@ -2,7 +2,7 @@ package model
 
 type RealEstate struct{
 	Id string  `json:"id"`
-    PropertyName string `json:"property_name"`
+    Name string `json:"name"`
     PropertyType string `json:"property_type"`
     Price int64 `json:"price"`
     Rent int64 `json:"rent"`
@@ -29,6 +29,8 @@ type RealEstate struct{
     Neighbor string `json:"neighbor"`
     CurrentStatus string `json:"current_status"`
     Transportion []Tranport
+    Latitude float64
+    Longitude float64
 }
 
 type Tranport struct {
