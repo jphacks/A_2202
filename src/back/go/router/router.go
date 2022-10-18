@@ -13,14 +13,12 @@ type (
 	}
 
 	V1 struct {
-		userHandler      handler.IUser
 		realestateHandler handler.IRealestate
 	}
 )
 
 func Init(e *echo.Echo) {
 	var r IV1 = &V1{
-		userHandler:      handler.NewUser(),
 		realestateHandler: handler.NewRealestate(),
 	}
 
@@ -33,6 +31,6 @@ func (r V1) withNone(e *echo.Echo) {
 	e.GET("/hello", func(c echo.Context) error {
 		return c.String(http.StatusOK, "oyasumi dayo")
 	})
-	e.GET("/users", r.userHandler.Index)
-	e.GET("/realestate", r.realestateHandler.Index)
+	// e.GET("/realestate", r.realestateHandler.Index)
+	e.GET("/realestate", r.realestateHandler.ByLatLon)
 }
