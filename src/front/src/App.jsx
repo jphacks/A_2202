@@ -12,48 +12,6 @@ import "@ar-js-org/ar.js/aframe/build/aframe-ar-nft";
 // import { Entity, Scene } from "aframe-react";
 
 function App() {
-  // useEffect(() => {
-  //   let latitude, longitude;
-  //   navigator.geolocation.getCurrentPosition((data) => {
-  //     latitude = data.coords.latitude;
-  //     longitude = data.coords.longitude;
-  //   });
-  //   if (typeof document !== "undefined") {
-  //     const entity = document.getElementsByTagName("a-box");
-  //     console.log("before entity", entity[0]);
-  //     entity[0].setAttribute("gps-entity-place", {
-  //       latitude: latitude,
-  //       longitude: longitude,
-  //     });
-  //     entity[0].setAttribute("id", "demo");
-  //     console.log("after entity", entity[0]);
-  //   }
-  // });
-
-  let line = document.createElement("div");
-  const html = `
-  <a-scene
-    vr-mode-ui="enabled: false"
-    embedded
-    arjs="sourceType: webcam; debugUIEnabled: false;"
-  >
-    <a-text
-      value="This content will always face you."
-      look-at="[gps-camera]"
-      scale="30 30 30"
-      gps-entity-place="latitude: 37.492151723031024; longitude: 139.94461074269023;"
-    ></a-text>
-    <a-camera gps-camera rotation-reader></a-camera>
-  </a-scene>
-  `;
-  line.innerHTML = html;
-
-  useEffect(() => {
-    const tmp = document.getElementById("demo");
-    console.log("tmp", tmp);
-    tmp.appendChild(line);
-  });
-
   return (
     <div id="demo">
       {/* <a-scene
