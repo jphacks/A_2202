@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import AScene from "./components/AScene";
 import ACamera from "./components/ACamera";
 import AText from "./components/AText";
+import RealStateInfo from "./components/RealStateInfo";
 
 function App() {
   const commonProps = {
@@ -26,7 +27,8 @@ function App() {
 
   return (
     <div style={{ width: "200vw", height: "100vh" }}>
-      <AScene
+      <RealStateInfo />
+      {/* <AScene
         embedded=""
         renderer="colorManagement: true"
         vr-Mode-Ui="enabled: false"
@@ -61,7 +63,7 @@ function App() {
           align="center"
           z-Offset={2}
         />
-      </AScene>
+      </AScene> */}
     </div>
   );
 }
