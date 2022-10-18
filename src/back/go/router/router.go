@@ -14,12 +14,14 @@ type (
 
 	V1 struct {
 		userHandler      handler.IUser
+		realestateHandler handler.IRealestate
 	}
 )
 
 func Init(e *echo.Echo) {
 	var r IV1 = &V1{
 		userHandler:      handler.NewUser(),
+		realestateHandler: handler.NewRealestate(),
 	}
 
 	r.withNone(e)
@@ -34,4 +36,5 @@ func Init(e *echo.Echo) {
 
 func (r V1) withNone(e *echo.Echo) {
 	e.GET("/users", r.userHandler.Index)
+	e.GET("/realestate", r.realestateHandler.Index)
 }
