@@ -3,6 +3,7 @@ package router
 import (
 	"app/handler"
 	"net/http"
+	"os"
 
 	"github.com/labstack/echo"
 )
@@ -24,7 +25,7 @@ func Init(e *echo.Echo) {
 
 	r.withNone(e)
 
-	e.Logger.Fatal(e.Start(":8080"))
+	e.Logger.Fatal(e.Start(":"+os.Getenv("PORT"), nil))
 }
 
 func (r V1) withNone(e *echo.Echo) {
