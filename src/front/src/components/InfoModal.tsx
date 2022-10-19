@@ -1,52 +1,42 @@
 import * as React from "react";
-import Box from "@mui/material/Box";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import Modal from "@mui/material/Modal";
-
-const style = {
-  position: "absolute" as "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 400,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
-};
+import Button from "@mui/joy/Button";
+import Stack from "@mui/joy/Stack";
+import Modal from "@mui/joy/Modal";
+import ModalClose from "@mui/joy/ModalClose";
+import ModalDialog from "@mui/joy/ModalDialog";
+import Typography from "@mui/joy/Typography";
 
 const InfoModal: React.VFC = () => {
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const [open, setOpen] = React.useState("");
 
   return (
     <div>
-      <Button variant="outlined" onClick={handleOpen}>
-        詳細
-      </Button>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
+      <Button
+        variant="outlined"
+        color="neutral"
+        onClick={() => setOpen("outlined")}
       >
-        <Box sx={style}>
-          <Typography variant="h6" component="h2">
-            物件情報
-          </Typography>
-          <Typography sx={{ mt: 2, fontSize: 20 }}>住所</Typography>
-          <Typography sx={{ mt: 1, ml: 2 }}>xx県yy市zz町</Typography>
-          <Typography sx={{ mt: 2, fontSize: 20 }}>価格</Typography>
-          <Typography sx={{ mt: 1, ml: 2 }}>5万円/月</Typography>
-          <Typography sx={{ mt: 2, fontSize: 20 }}>部屋の写真</Typography>
+        Outlined
+      </Button>
+      <Modal open={!!open} onClose={() => setOpen("")}>
+        <ModalDialog
+          aria-labelledby="variant-modal-title"
+          aria-describedby="variant-modal-description"
+        >
+          <ModalClose />
           <Typography
-            sx={{ mt: 1, ml: 2, bgcolor: "black", width: 300, height: 350 }}
+            id="variant-modal-title"
+            component="h2"
+            level="inherit"
+            fontSize="1.25em"
+            mb="0.25em"
           >
-            hoge
+            Modal Dialog
           </Typography>
-        </Box>
+          <Typography id="variant-modal-description" textColor="inherit">
+            This is a `{open}` modal dialog.
+          </Typography>
+        </ModalDialog>
       </Modal>
     </div>
   );

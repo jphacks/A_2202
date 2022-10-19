@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import AScene from "./components/AScene";
 import ACamera from "./components/ACamera";
 import AText from "./components/AText";
+import RealStateInfo from "./components/RealStateInfo";
+import InfoModal from "./components/InfoModal";
 
 function App() {
   const commonProps = {
@@ -26,6 +28,8 @@ function App() {
 
   return (
     <div style={{ width: "200vw", height: "100vh" }}>
+      {/* <RealStateInfo />
+      <InfoModal /> */}
       <AScene
         embedded=""
         renderer="colorManagement: true"
