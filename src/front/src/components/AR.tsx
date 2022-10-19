@@ -34,7 +34,7 @@ const AR = () => {
         // arjs="trackingMethod: best; sourceType: webcam; matrixCodeType: 3x3; detectionMode:mono_and_matrix; debugUIEnabled: false;"
       >
         <ACamera
-          gps-Camera="minDistance:30; maxDistance: 100"
+          gps-Camera="minDistance:30; maxDistance: 100; gpsMinDistance: 10"
           rotation-Reader=""
           // cursor="rayOrigin: mouse; fuse:false"
           // camera=""
