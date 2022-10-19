@@ -1,10 +1,10 @@
-import React from 'react'
+import React from "react";
 
 /**
  * a-text
  */
 const AText = ({ children, ...props }: any): JSX.Element => {
-  return React.createElement('a-text', props, children)
-}
+  return React.createElement("a-text", props, children);
+};
 
-export default AText
+export default AText;
