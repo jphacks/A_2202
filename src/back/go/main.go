@@ -26,9 +26,8 @@ func main() {
             },
             // Origin
             AllowOrigins: []string{
-               "https://localhost:3000/",
-               "http://localhost:3000/",
-               "*",
+               "https://localhost:3000",
+               "http://localhost:3000",
            },
         }))
 	router.Init(e)
