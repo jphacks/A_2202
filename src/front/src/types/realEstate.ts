@@ -1,8 +1,6 @@
 export type RealEstateInfo = {
-  sequential_number: number;
+  id: string;
   name: string;
-  longitude: string;
-  latitude: string;
-  address: string;
-  price: number;
+  latitude: number;
+  longitude: number;
 };
