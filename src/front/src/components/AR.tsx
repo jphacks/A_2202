@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import type { RealEstateInfo } from "../types/realEstate";
 import AScene from "./aframe/AScene";
 import ACamera from "./aframe/ACamera";
 import AText from "./aframe/AText";
@@ -7,6 +8,7 @@ const AR = () => {
   const [latitude, setLatitude] = useState<number>();
   const [longitude, setLongitude] = useState<number>();
   const [isDisplay, setDisplay] = useState<boolean>(true);
+  const [articles, setArticles] = useState<[] | RealEstateInfo[]>([]);
 
   // TODO: latitude, longitudeをポーリング？
   // しないのであれば、useState消す
@@ -65,6 +67,26 @@ const AR = () => {
     // });
   });
 
+  const getArticles = async () => {
+    const url =
+      "http://localhost:8080/realestate?latitude=37.492151723031024&longitude=139.94461074269023";
+    await fetch(url)
+      .then((res: any) => res.json())
+      .then((data) => {
+        setArticles(data.Realestates);
+        console.log(articles, data);
+      })
+      .catch((err) => {
+        console.error("ERROR API: ", err);
+      });
+  };
+
+  useEffect(() => {
+    getArticles();
+  }, []);
+
+  if (articles.length === 0) return <h1>Loading...</h1>;
+
   return (
     <div style={{ width: "200vw", height: "100vh" }}>
       <AScene
@@ -86,7 +108,8 @@ const AR = () => {
         <AText
           {...commonProps}
           // id="myobject"
-          value={`${latitude}, ${longitude} \n Hello World!`}
+          // TODO: 3D画像
+          value={`Hello World!`}
           scale={"0.5 0.5 0.5"}
           color={"red"}
           width={18}
