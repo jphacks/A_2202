@@ -34,4 +34,5 @@ func (r V1) withNone(e *echo.Echo) {
 	// e.GET("/realestate", r.realestateHandler.Index)
 	e.GET("/realestate", r.realestateHandler.ByLatLon)
 	e.GET("/realestate/detail/str", r.realestateHandler.ByName)
+	e.GET("/realestate/detail/latlon", r.realestateHandler.ByNear)
 }
