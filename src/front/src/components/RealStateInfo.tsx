@@ -1,34 +1,14 @@
 import { useEffect, useState } from "react";
-
-type RealEstateInfo = {
-  sequential_number: number;
-  name: string;
-  longitude: string;
-  latitude: string;
-  address: string;
-  price: number;
-};
+import type { RealEstateInfo } from "../types/realEstate";
+import getArticles from "../api/realEstate";
 
 const BulletinBoard: React.FC = () => {
-  async function getArticals(): Promise<void> {
-    try {
-      // URL
-      const url = "http://localhost:8080/realestate";
-
-      let response: Array<RealEstateInfo> = [];
-      fetch(url).then((res: any) => (response = JSON.parse(res)));
-      console.log(response);
-    } catch (err) {
-      console.log(err);
-    }
-  }
-  const [articals, setArticals] = useState<[] | RealEstateInfo[]>([]);
+  const [articles, setArticles] = useState<[] | RealEstateInfo[]>([]);
 
   useEffect(() => {
     (async () => {
-      await getArticals();
-      // const articals = await getArticals();
-      setArticals(articals);
+      const articles = await getArticles();
+      setArticles(articles);
     })();
   });
 
@@ -36,7 +16,7 @@ const BulletinBoard: React.FC = () => {
     <div>
       <h1>Blo</h1>
       <ul>
-        {articals.map((info: RealEstateInfo) => (
+        {articles.map((info: RealEstateInfo) => (
           <li key={info.sequential_number.toString()}>{info.name}</li>
         ))}
       </ul>

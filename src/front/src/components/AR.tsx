@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useState } from "react";
 import AScene from "./aframe/AScene";
 import ACamera from "./aframe/ACamera";
 import AText from "./aframe/AText";
