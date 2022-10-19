@@ -14,11 +14,9 @@ const BulletinBoard: React.FC = () => {
   async function getArticals(): Promise<void> {
     try {
       // URL
-      const url = "https://localhost:8080/hello";
+      const url = "http://localhost:8080/realestate";
 
-      const response = await axios.get<RealEstateInfo[]>(url, {
-        headers: { "Content-Type": "application/json" },
-      });
+      const response = await axios.get<RealEstateInfo[]>(url);
       console.log(response);
     } catch (err) {
       console.log(err);
@@ -32,11 +30,11 @@ const BulletinBoard: React.FC = () => {
       // const articals = await getArticals();
       setArticals(articals);
     })();
-  }, []);
+  });
 
   return (
     <div>
-      <h1>Blog Articals</h1>
+      <h1>Blo</h1>
       <ul>
         {articals.map((info: RealEstateInfo) => (
           <li key={info.sequential_number.toString()}>{info.name}</li>
