@@ -48,7 +48,6 @@ const AR = () => {
 
   window.addEventListener("load", function () {
     const el = document.getElementsByTagName("canvas");
-    // console.log("el", el);
     el[0].addEventListener("click", (event) => {
       if (isValid) {
         setDisplay(false);
