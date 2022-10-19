@@ -28,9 +28,9 @@ function App() {
 
   return (
     <div style={{ width: "200vw", height: "100vh" }}>
-      <RealStateInfo />
-      <InfoModal />
-      {/* <AScene
+      {/* <RealStateInfo />
+      <InfoModal /> */}
+      <AScene
         embedded=""
         renderer="colorManagement: true"
         vr-Mode-Ui="enabled: false"
@@ -65,7 +65,7 @@ function App() {
           align="center"
           z-Offset={2}
         />
-      </AScene> */}
+      </AScene>
     </div>
   );
 }
