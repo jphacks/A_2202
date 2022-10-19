@@ -10,8 +10,8 @@ const InfoModal = () => {
 
   return (
     <div>
-      <Button variant="outlined" color="neutral" onClick={() => setOpen(true)}>
-        Outlined
+      <Button variant="solid" color="primary" onClick={() => setOpen(true)}>
+        Information
       </Button>
       <Modal
         open={open}
