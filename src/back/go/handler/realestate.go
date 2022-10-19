@@ -14,6 +14,7 @@ type (
 	IRealestate interface {
 		Index(c echo.Context) error
 		ByLatLon(c echo.Context) error
+		ByName(c echo.Context) error
 	}
 
 	RealEstate struct {
@@ -23,6 +24,10 @@ type (
 
 	JSONRealEstate struct {
 		Realestates *response.RealestateLatLonNames `json:"realestates`
+	}
+
+	JSONRealEstateDetail struct {
+		RealEstateDetail *response.RealestateDetails `json:"realestates`
 	}
 )
 
@@ -86,5 +91,21 @@ func (h *RealEstate) ByLatLon(c echo.Context) error {
 
 	return c.JSON(http.StatusOK, &JSONRealEstate{
 		Realestates: response.NewRealestateLatLonNames(realestates),
+	})
+}
+
+func (h *RealEstate) ByName(c echo.Context) error {
+	name := c.QueryParam("name")
+	if len(name) == 0 {
+		return c.JSON(http.StatusBadRequest, "name is required")
+	}
+
+	realestates, err := h.realestateService.GetByName(name)
+	if err != nil {
+		return c.JSON(http.StatusBadRequest, fmt.Sprintf("%v", err))
+	}
+
+	return c.JSON(http.StatusOK, &JSONRealEstateDetail{
+		RealEstateDetail: response.NewRealEstateDetails(realestates),
 	})
 }
