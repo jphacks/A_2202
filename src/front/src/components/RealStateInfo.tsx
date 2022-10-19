@@ -1,4 +1,3 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 
 type RealEstateInfo = {
@@ -16,7 +15,8 @@ const BulletinBoard: React.FC = () => {
       // URL
       const url = "http://localhost:8080/realestate";
 
-      const response = await axios.get<RealEstateInfo[]>(url);
+      let response: Array<RealEstateInfo> = [];
+      fetch(url).then((res: any) => (response = JSON.parse(res)));
       console.log(response);
     } catch (err) {
       console.log(err);
