@@ -23,9 +23,11 @@ func Init(e *echo.Echo) {
 		realestateHandler: handler.NewRealestate(),
 	}
 
+	port := os.Getenv("PORT")
+
 	r.withNone(e)
 
-	e.Logger.Fatal(e.Start(":"+os.Getenv("PORT"), nil))
+	e.Logger.Fatal(e.Start(":" + port))
 }
 
 func (r V1) withNone(e *echo.Echo) {
