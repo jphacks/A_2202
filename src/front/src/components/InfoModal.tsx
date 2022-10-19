@@ -31,10 +31,10 @@ const InfoModal: React.VFC = () => {
             fontSize="1.25em"
             mb="0.25em"
           >
-            Modal Dialog
+            物件情報
           </Typography>
           <Typography id="variant-modal-description" textColor="inherit">
-            This is a `{open}` modal dialog.
+            会津レデンス
           </Typography>
         </ModalDialog>
       </Modal>
