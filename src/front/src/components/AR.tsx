@@ -56,6 +56,13 @@ const AR = () => {
       }
       isValid = !isValid;
     });
+
+    // TODO: オブジェクトタッチ判定
+    // const tmp = document.getElementById("myobject");
+    // console.log("tmp", tmp);
+    // tmp?.addEventListener("click", () => {
+    //   window.alert("tmp");
+    // });
   });
 
   return (
@@ -64,6 +71,8 @@ const AR = () => {
         vr-Mode-Ui="enabled: false"
         embedded=""
         arjs="sourceType: webcam; debugUIEnabled: false;"
+        // webxr="optionalFeatures:  hit-test;"
+        // ar-hit-test="target:#myobject;"
         // renderer="colorManagement: true"
         // arjs="trackingMethod: best; sourceType: webcam; matrixCodeType: 3x3; detectionMode:mono_and_matrix; debugUIEnabled: false;"
       >
@@ -76,6 +85,7 @@ const AR = () => {
 
         <AText
           {...commonProps}
+          // id="myobject"
           value={`${latitude}, ${longitude} \n Hello World!`}
           scale={"0.5 0.5 0.5"}
           color={"red"}

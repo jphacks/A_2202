@@ -1,24 +1,24 @@
-import * as React from "react";
+import React, { useState } from "react";
 import Button from "@mui/joy/Button";
-import Stack from "@mui/joy/Stack";
 import Modal from "@mui/joy/Modal";
 import ModalClose from "@mui/joy/ModalClose";
 import ModalDialog from "@mui/joy/ModalDialog";
 import Typography from "@mui/joy/Typography";
 
-const InfoModal: React.VFC = () => {
-  const [open, setOpen] = React.useState("");
+const InfoModal = () => {
+  const [open, setOpen] = useState(false);
 
   return (
     <div>
-      <Button
-        variant="outlined"
-        color="neutral"
-        onClick={() => setOpen("outlined")}
-      >
+      <Button variant="outlined" color="neutral" onClick={() => setOpen(true)}>
         Outlined
       </Button>
-      <Modal open={!!open} onClose={() => setOpen("")}>
+      <Modal
+        open={open}
+        onClose={() => {
+          setOpen(false);
+        }}
+      >
         <ModalDialog
           aria-labelledby="variant-modal-title"
           aria-describedby="variant-modal-description"
@@ -34,7 +34,7 @@ const InfoModal: React.VFC = () => {
             Modal Dialog
           </Typography>
           <Typography id="variant-modal-description" textColor="inherit">
-            This is a `{open}` modal dialog.
+            This is a modal dialog.
           </Typography>
         </ModalDialog>
       </Modal>

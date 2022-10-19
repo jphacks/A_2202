@@ -15,7 +15,6 @@ root.render(
         <App />
       </CssVarsProvider>
     </StyledEngineProvider>
-    {/* <App /> */}
   </React.StrictMode>
 );
 
