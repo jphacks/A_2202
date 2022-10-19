@@ -28,15 +28,8 @@ type RealEstate struct{
     Facility string `json:"facility"`
     Neighbor string `json:"neighbor"`
     CurrentStatus string `json:"current_status"`
-    Transportion []Tranport
     Latitude float64
     Longitude float64
-}
-
-type Tranport struct {
-	StationName string `json:"station_name"`
-    RailroadName string `json:"railroad_name"`
-    StationWalkTime float64 `json:"station_walk_time"`
 }
 
 type RealEstates []RealEstate
