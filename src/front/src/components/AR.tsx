@@ -8,7 +8,7 @@ const AR = () => {
     "look-At": "[gps-camera]",
     "gps-entity-place":
       "latitude: 37.492151723031024; longitude: 139.94461074269023;",
-    // 'latitude: 37.5150016; longitude: 139.9335767;',
+    // "latitude: 37.5150016; longitude: 139.9335767;",
   };
 
   // useEffect(() => {
@@ -34,9 +34,8 @@ const AR = () => {
         // arjs="trackingMethod: best; sourceType: webcam; matrixCodeType: 3x3; detectionMode:mono_and_matrix; debugUIEnabled: false;"
       >
         <ACamera
-          gps-Camera=""
+          gps-Camera="minDistance:30; maxDistance: 100"
           rotation-Reader=""
-          // gps-Camera="maxDistance: 0"
           // cursor="rayOrigin: mouse; fuse:false"
           // camera=""
         />
