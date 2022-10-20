@@ -27,7 +27,7 @@ const InfoModal: React.FC<{
       .catch((err) => {
         window.alert("Failed to get API!");
         // window.alert("InfoModal data.Realestates" + data.Realestates);
-      })
+      });
   };
 
   useEffect(() => {
@@ -36,7 +36,11 @@ const InfoModal: React.FC<{
 
   return (
     <div>
-      <Button variant="solid" color="primary" onClick={() => setOpen(true)}>
+      <Button
+        variant="solid"
+        style={{ backgroundColor: "#75CDD9" }}
+        onClick={() => setOpen(true)}
+      >
         Information
       </Button>
       <Modal

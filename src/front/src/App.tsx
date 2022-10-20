@@ -6,6 +6,8 @@ import WarningIcon from "@mui/icons-material/Warning";
 import Alert from "@mui/joy/Alert";
 import Typography from "@mui/joy/Typography";
 
+// TODO: gif長くする、gif背景をカメラ、左上あたりロゴ表示、フォント揃える、色揃える
+
 const App = () => {
   const [latitude, setLatitude] = useState<number>(0);
   const [longitude, setLongitude] = useState<number>(0);
@@ -59,12 +61,11 @@ const App = () => {
       <AR latitude={latitude} longitude={longitude} />
       <div
         style={{
-          zIndex: 100000000000000000,
+          zIndex: 2147483647,
           position: "absolute",
-          bottom: "1rem",
-          right: "1rem",
-          width: "120px",
-          height: "120px",
+          top: "90%",
+          left: "50%",
+          transform: "translate(-50%,-50%)",
         }}
       >
         <InfoModal latitude={latitude} longitude={longitude} />
