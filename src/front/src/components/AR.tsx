@@ -2,9 +2,10 @@ import React, { useState, useEffect } from "react";
 import type { RealEstates } from "../types/realEstate";
 import AScene from "./aframe/AScene";
 import ACamera from "./aframe/ACamera";
+import AText from "./aframe/AText";
 import AAsset from "./aframe/AAssets";
 import AAsetItem from "./aframe/AAsetItem";
-
+import AEntity from "./aframe/AEntity";
 
 const AR: React.FC<{
   latitude: number;
@@ -15,32 +16,32 @@ const AR: React.FC<{
 
   const getRealEstates = async (latitude: number, longitude: number) => {
     if (latitude !== 0 && longitude !== 0) {
-      const url = `https://back-lpzceixskq-de.a.run.app/realestate?latitude=${latitude}&longitude=${longitude}`;
-      // const url = `http://localhost:8080/realestate?latitude=${latitude}&longitude=${longitude}`;
-      window.alert("AR url" + url);
-      // setRealEstates([
-      //   {
-      //     id: "82ddbc14-9284-4ca8-abc0-037e6eaed6c3",
-      //     name: "Daiki",
-      //     latitude: 37.492151723031024,
-      //     longitude: 139.94461074269023,
-      //   },
-      //   {
-      //     id: "82ddbc14-9284-4ca8-abc0-nice",
-      //     name: "Sakuma",
-      //     latitude: 37.4922,
-      //     longitude: 139.94461074269023,
-      //   },
-      // ]);
-      await fetch(url)
-        .then((res: any) => res.json())
-        .then((data) => {
-          setRealEstates(data.Realestates);
-          window.alert("AR data.Realestates" + data.Realestates);
-        })
-        .catch((err) => {
-          window.alert("AR err" + err);
-        });
+      // const url = `https://back-lpzceixskq-de.a.run.app/realestate?latitude=${latitude}&longitude=${longitude}`;
+      const url = `http://localhost:8080/realestate?latitude=${latitude}&longitude=${longitude}`;
+      // window.alert("AR url" + url);
+      setRealEstates([
+        {
+          id: "82ddbc14-9284-4ca8-abc0-037e6eaed6c3",
+          name: "Daiki",
+          latitude: 37.492151723031024,
+          longitude: 139.94461074269023,
+        },
+        {
+          id: "82ddbc14-9284-4ca8-abc0-nice",
+          name: "Sakuma",
+          latitude: 37.4922,
+          longitude: 139.94461074269023,
+        },
+      ]);
+      // await fetch(url)
+      //   .then((res: any) => res.json())
+      //   .then((data) => {
+      //     setRealEstates(data.Realestates);
+      //     // window.alert("AR data.Realestates" + data.Realestates);
+      //   })
+      //   .catch((err) => {
+      //     // window.alert("AR err" + err);
+      //   });
     }
   };
 
@@ -99,9 +100,17 @@ const AR: React.FC<{
                 //   color={"red"}
                 //   width={18}
                 // />
-                <AAsset>
-                  <AAsetItem id="pin" src="/assets/pin.gltf" ></AAsetItem>
-                </AAsset>
+                <>
+                  <AAsset>
+                    <AAsetItem id="pin" src="/assets/pin.gltf"></AAsetItem>
+                  </AAsset>
+                  <AEntity
+                    look-At={"[gps-camera]"}
+                    gps-Entity-Place={`latitude: ${realEstate.latitude}; longitude: ${realEstate.longitude};`}
+                    gltf-Model={"#pin"}
+                    scale={"1 1 1"}
+                  />
+                </>
               );
             })
           : "Fail"}
