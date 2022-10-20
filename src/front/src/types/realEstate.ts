@@ -1,4 +1,4 @@
-export type Realestates = {
+export type RealEstates = {
   id: string;
   name: string;
   latitude: number;
