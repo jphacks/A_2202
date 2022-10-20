@@ -1,24 +1,24 @@
-import * as React from "react";
+import React, { useState } from "react";
 import Button from "@mui/joy/Button";
-import Stack from "@mui/joy/Stack";
 import Modal from "@mui/joy/Modal";
 import ModalClose from "@mui/joy/ModalClose";
 import ModalDialog from "@mui/joy/ModalDialog";
 import Typography from "@mui/joy/Typography";
 
-const InfoModal: React.VFC = () => {
-  const [open, setOpen] = React.useState("");
+const InfoModal = () => {
+  const [open, setOpen] = useState(false);
 
   return (
     <div>
-      <Button
-        variant="outlined"
-        color="neutral"
-        onClick={() => setOpen("outlined")}
-      >
-        Outlined
+      <Button variant="solid" color="primary" onClick={() => setOpen(true)}>
+        Information
       </Button>
-      <Modal open={!!open} onClose={() => setOpen("")}>
+      <Modal
+        open={open}
+        onClose={() => {
+          setOpen(false);
+        }}
+      >
         <ModalDialog
           aria-labelledby="variant-modal-title"
           aria-describedby="variant-modal-description"

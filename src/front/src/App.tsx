@@ -7,9 +7,20 @@ import AR from "./components/AR";
 const App = () => {
   return (
     <div className="App">
-      {/* <RealStateInfo />
-      <InfoModal /> */}
+      {/* <RealStateInfo /> */}
       <AR />
+      <div
+        style={{
+          zIndex: 100000000000000000,
+          position: "absolute",
+          bottom: "1rem",
+          right: "1rem",
+          width: "120px",
+          height: "120px",
+        }}
+      >
+        <InfoModal />
+      </div>
     </div>
   );
 };

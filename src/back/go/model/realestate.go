@@ -30,6 +30,7 @@ type RealEstate struct{
     CurrentStatus string `json:"current_status"`
     Latitude float64
     Longitude float64
+    Distance float64
 }
 
 type RealEstates []RealEstate
