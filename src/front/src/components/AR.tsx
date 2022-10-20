@@ -13,9 +13,8 @@ const AR: React.FC<{
 
   const getRealEstates = async (latitude: number, longitude: number) => {
     if (latitude !== 0 && longitude !== 0) {
-      // const url =
-      //   `https://back-lpzceixskq-de.a.run.app/realestate?latitude=${latitude}&longitude=${longitude}`;
-      const url = `http://localhost:8080/realestate?latitude=${latitude}&longitude=${longitude}`;
+      const url = `https://back-lpzceixskq-de.a.run.app/realestate?latitude=${latitude}&longitude=${longitude}`;
+      // const url = `http://localhost:8080/realestate?latitude=${latitude}&longitude=${longitude}`;
       console.log("url", url);
       setRealEstates([
         {
