@@ -6,7 +6,7 @@ import WarningIcon from "@mui/icons-material/Warning";
 import Alert from "@mui/joy/Alert";
 import Typography from "@mui/joy/Typography";
 
-// TODO: gif長くする、gif背景をカメラ、左上あたりロゴ表示、フォント揃える、色揃える
+// TODO: gif長くする、gif背景をカメラ、フォント揃える、色揃える
 
 const App = () => {
   const [latitude, setLatitude] = useState<number>(0);
@@ -58,6 +58,16 @@ const App = () => {
 
   return (
     <div className="App">
+      <img
+        style={{
+          width: "150px",
+          position: "absolute",
+          top: "20px",
+          left: "20px",
+        }}
+        src={"/assets/yurucamp-logo.svg"}
+        alt="Please wait until the page loads."
+      />
       <AR latitude={latitude} longitude={longitude} />
       <div
         style={{
