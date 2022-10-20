@@ -4,6 +4,9 @@ import AScene from "./aframe/AScene";
 import ACamera from "./aframe/ACamera";
 import AText from "./aframe/AText";
 import CircularProgress from "@mui/joy/CircularProgress";
+import AAsset from "./aframe/AAssets";
+import AAsetItem from "./aframe/AAsetItem";
+import AEntity from "./aframe/AEntity";
 
 const AR: React.FC<{
   latitude: number;
@@ -14,9 +17,9 @@ const AR: React.FC<{
 
   const getRealEstates = async (latitude: number, longitude: number) => {
     if (latitude !== 0 && longitude !== 0) {
-      // const url =
-      //   `https://back-lpzceixskq-de.a.run.app/realestate?latitude=${latitude}&longitude=${longitude}`;
+      // const url = `https://back-lpzceixskq-de.a.run.app/realestate?latitude=${latitude}&longitude=${longitude}`;
       const url = `http://localhost:8080/realestate?latitude=${latitude}&longitude=${longitude}`;
+      // window.alert("AR url" + url);
       setRealEstates([
         {
           id: "82ddbc14-9284-4ca8-abc0-037e6eaed6c3",
@@ -38,6 +41,10 @@ const AR: React.FC<{
       //   })
       //   .catch((err) => {
       //     window.alert("Failed to get API!");
+      //     // window.alert("AR data.Realestates" + data.Realestates);
+      //   })
+      //   .catch((err) => {
+      //     // window.alert("AR err" + err);
       //   });
     }
   };
@@ -89,15 +96,26 @@ const AR: React.FC<{
         {Array.isArray(realEstates)
           ? realEstates.map((realEstate) => {
               return (
-                <AText
-                  key={realEstate.id}
-                  look-At={"[gps-camera]"}
-                  gps-Entity-Place={`latitude: ${realEstate.latitude}; longitude: ${realEstate.longitude};`}
-                  value={`${realEstate.name}`}
-                  scale={"1 1 1"}
-                  color={"red"}
-                  width={18}
-                />
+                // <AText
+                //   key={realEstate.id}
+                //   look-At={"[gps-camera]"}
+                //   gps-Entity-Place={`latitude: ${realEstate.latitude}; longitude: ${realEstate.longitude};`}
+                //   value={`${realEstate.name}`}
+                //   scale={"1 1 1"}
+                //   color={"red"}
+                //   width={18}
+                // />
+                <>
+                  <AAsset>
+                    <AAsetItem id="pin" src="/assets/pin.gltf"></AAsetItem>
+                  </AAsset>
+                  <AEntity
+                    look-At={"[gps-camera]"}
+                    gps-Entity-Place={`latitude: ${realEstate.latitude}; longitude: ${realEstate.longitude};`}
+                    gltf-Model={"#pin"}
+                    scale={"1 1 1"}
+                  />
+                </>
               );
             })
           : "Fail"}
