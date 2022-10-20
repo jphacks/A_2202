@@ -25,7 +25,7 @@ const InfoModal: React.FC<{
         setRealEstateDetail(data.RealEstateDetails);
       })
       .catch((err) => {
-        window.alert("ERROR API: " + err);
+        window.alert("Failed to get API!");
       });
   };
 

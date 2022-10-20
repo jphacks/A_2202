@@ -2,19 +2,35 @@ import React, { useState } from "react";
 // import "./App.css";
 import InfoModal from "./components/InfoModal";
 import AR from "./components/AR";
+import WarningIcon from "@mui/icons-material/Warning";
+import Alert from "@mui/joy/Alert";
+import Typography from "@mui/joy/Typography";
+import CircularProgress from "@mui/joy/CircularProgress";
 
 const App = () => {
   const [latitude, setLatitude] = useState<number>(0);
   const [longitude, setLongitude] = useState<number>(0);
 
   if (!navigator.geolocation) {
-    window.alert("Your browser doesn't support Geolocation");
+    return (
+      <Alert
+        startDecorator={<WarningIcon sx={{ mx: 0.5 }} />}
+        variant="solid"
+        color="danger"
+        sx={{
+          height: "40px",
+        }}
+      >
+        <Typography sx={{ color: "white" }} fontWeight="md">
+          Your browser doesn't support Geolocation.
+        </Typography>
+      </Alert>
+    );
   } else {
     navigator.geolocation.getCurrentPosition(
       (position) => {
         setLatitude(position.coords.latitude);
         setLongitude(position.coords.longitude);
-        console.log("lat, lon", latitude, longitude);
       },
       () => {
         window.alert("Failed to get your location!");
@@ -22,7 +38,8 @@ const App = () => {
     );
   }
 
-  if (latitude === 0 && longitude === 0) return <h1>Loading...</h1>;
+  if (latitude === 0 && longitude === 0)
+    return <CircularProgress variant="soft" size="lg" />;
 
   return (
     <div className="App">

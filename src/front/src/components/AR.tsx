@@ -3,6 +3,7 @@ import type { RealEstates } from "../types/realEstate";
 import AScene from "./aframe/AScene";
 import ACamera from "./aframe/ACamera";
 import AText from "./aframe/AText";
+import CircularProgress from "@mui/joy/CircularProgress";
 
 const AR: React.FC<{
   latitude: number;
@@ -16,7 +17,6 @@ const AR: React.FC<{
       // const url =
       //   `https://back-lpzceixskq-de.a.run.app/realestate?latitude=${latitude}&longitude=${longitude}`;
       const url = `http://localhost:8080/realestate?latitude=${latitude}&longitude=${longitude}`;
-      console.log("url", url);
       setRealEstates([
         {
           id: "82ddbc14-9284-4ca8-abc0-037e6eaed6c3",
@@ -35,10 +35,9 @@ const AR: React.FC<{
       //   .then((res: any) => res.json())
       //   .then((data) => {
       //     setRealEstates(data.Realestates);
-      //     console.log("data.Realestates", data.Realestates);
       //   })
       //   .catch((err) => {
-      //     console.error("ERROR API: ", err);
+      //     window.alert("Failed to get API!");
       //   });
     }
   };
@@ -66,7 +65,8 @@ const AR: React.FC<{
   //   // });
   // });
 
-  if (realEstates.length === 0) return <h1>Loading...</h1>;
+  if (realEstates.length === 0)
+    return <CircularProgress variant="soft" size="lg" />;
 
   return (
     <div style={{ width: "200vw", height: "100vh" }}>
