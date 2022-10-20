@@ -15,30 +15,30 @@ const AR: React.FC<{
     if (latitude !== 0 && longitude !== 0) {
       const url = `https://back-lpzceixskq-de.a.run.app/realestate?latitude=${latitude}&longitude=${longitude}`;
       // const url = `http://localhost:8080/realestate?latitude=${latitude}&longitude=${longitude}`;
-      console.log("url", url);
-      setRealEstates([
-        {
-          id: "82ddbc14-9284-4ca8-abc0-037e6eaed6c3",
-          name: "Daiki",
-          latitude: 37.492151723031024,
-          longitude: 139.94461074269023,
-        },
-        {
-          id: "82ddbc14-9284-4ca8-abc0-nice",
-          name: "Sakuma",
-          latitude: 37.4922,
-          longitude: 139.94461074269023,
-        },
-      ]);
-      // await fetch(url)
-      //   .then((res: any) => res.json())
-      //   .then((data) => {
-      //     setRealEstates(data.Realestates);
-      //     console.log("data.Realestates", data.Realestates);
-      //   })
-      //   .catch((err) => {
-      //     console.error("ERROR API: ", err);
-      //   });
+      window.alert("AR url" + url);
+      // setRealEstates([
+      //   {
+      //     id: "82ddbc14-9284-4ca8-abc0-037e6eaed6c3",
+      //     name: "Daiki",
+      //     latitude: 37.492151723031024,
+      //     longitude: 139.94461074269023,
+      //   },
+      //   {
+      //     id: "82ddbc14-9284-4ca8-abc0-nice",
+      //     name: "Sakuma",
+      //     latitude: 37.4922,
+      //     longitude: 139.94461074269023,
+      //   },
+      // ]);
+      await fetch(url)
+        .then((res: any) => res.json())
+        .then((data) => {
+          setRealEstates(data.Realestates);
+          window.alert("AR data.Realestates" + data.Realestates);
+        })
+        .catch((err) => {
+          window.alert("AR err" + err);
+        });
     }
   };
 
@@ -72,14 +72,14 @@ const AR: React.FC<{
       <AScene
         vr-Mode-Ui="enabled: false"
         embedded=""
-        arjs="sourceType: webcam; debugUIEnabled: false;"
+        arjs="sourceType: webcam; debugUIEnabled: false"
         // webxr="optionalFeatures:  hit-test;"
         // ar-hit-test="target:#myobject;"
         // renderer="colorManagement: true"
         // arjs="trackingMethod: best; sourceType: webcam; matrixCodeType: 3x3; detectionMode:mono_and_matrix; debugUIEnabled: false;"
       >
         <ACamera
-          gps-Camera="minDistance:30; maxDistance: 100; gpsMinDistance: 10"
+          gps-Camera="maxDistance: 100; gpsMinDistance: 0"
           rotation-Reader=""
           // cursor="rayOrigin: mouse; fuse:false"
           // camera=""

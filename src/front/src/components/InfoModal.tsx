@@ -18,13 +18,15 @@ const InfoModal: React.FC<{
   const getRealEstateDetail = async (latitude: number, longitude: number) => {
     const url = `https://back-lpzceixskq-de.a.run.app/realestate/detail/latlon?latitude=${latitude}&longitude=${longitude}`;
     // const url = `http://localhost:8080/realestate/detail/latlon?latitude=${latitude}&longitude=${longitude}`;
+    window.alert("InfoModal url" + url);
     await fetch(url)
       .then((res: any) => res.json())
       .then((data) => {
         setRealEstateDetail(data.RealEstateDetails);
+        window.alert("InfoModal data.Realestates" + data.Realestates);
       })
       .catch((err) => {
-        window.alert("ERROR API: " + err);
+        window.alert("InfoModal err" + err);
       });
   };
 
