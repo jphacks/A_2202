@@ -23,11 +23,11 @@ const InfoModal: React.FC<{
       .then((res: any) => res.json())
       .then((data) => {
         setRealEstateDetail(data.RealEstateDetails);
-        // window.alert("InfoModal data.Realestates" + data.Realestates);
       })
       .catch((err) => {
-        // window.alert("InfoModal err" + err);
-      });
+        window.alert("Failed to get API!");
+        // window.alert("InfoModal data.Realestates" + data.Realestates);
+      })
   };
 
   useEffect(() => {
