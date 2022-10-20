@@ -22,7 +22,7 @@ type (
 		Address string `json:"address"`
 		CatchCopy string `json:"catch_copy"`
 		RoomCount int64 `json:"room_count"`
-		FloorPlan string `json:"floor_plan"`
+		FlorPlan string `json:"flor_plan"`
 		Direction string `json:"direction"`
 		PropetyStoructure string `json:"propety_storucture"`
 		TotalGroundStory int64 `json:"total_ground_story"`
@@ -88,7 +88,7 @@ func NewRealEstateDetail(m *model.RealEstate) *RealestateDetail {
 		Address: m.Address,
 		CatchCopy: m.CatchCopy,
 		RoomCount: m.RoomCount,
-		FloorPlan: m.FloorPlan,
+		FlorPlan: m.FlorPlan,
 		Direction: m.Direction,
 		PropetyStoructure: m.PropetyStoructure,
 		TotalGroundStory: m.TotalGroundStory,
