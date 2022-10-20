@@ -22,7 +22,7 @@ const InfoModal: React.FC<{
     await fetch(url)
       .then((res: any) => res.json())
       .then((data) => {
-        setRealEstateDetail(data.RealEstateDetail);
+        setRealEstateDetail(data.RealEstateDetails);
       })
       .catch((err) => {
         window.alert("ERROR API: " + err);
