@@ -3,10 +3,10 @@ import type { RealEstates } from "../types/realEstate";
 import AScene from "./aframe/AScene";
 import ACamera from "./aframe/ACamera";
 import AText from "./aframe/AText";
-import CircularProgress from "@mui/joy/CircularProgress";
 import AAsset from "./aframe/AAssets";
 import AAsetItem from "./aframe/AAsetItem";
 import AEntity from "./aframe/AEntity";
+import CircularProgress from "@mui/joy/CircularProgress";
 
 const AR: React.FC<{
   latitude: number;
@@ -43,9 +43,6 @@ const AR: React.FC<{
       //     window.alert("Failed to get API!");
       //     // window.alert("AR data.Realestates" + data.Realestates);
       //   })
-      //   .catch((err) => {
-      //     // window.alert("AR err" + err);
-      //   });
     }
   };
 
