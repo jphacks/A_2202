@@ -116,6 +116,15 @@ func (h *RealEstate) ByNear(c echo.Context) error {
 		return c.JSON(http.StatusBadRequest, fmt.Sprintf("%v", err))
 	}
 
+	for i, v := range *realestates {
+		lagLng, err := h.geocodingService.GetGeocodeByAdd(v.Address)
+		if err != nil {
+			return c.JSON(http.StatusBadRequest, fmt.Sprintf("%v", err))
+		}
+		(*realestates)[i].Latitude = lagLng.Results[0].Geometry.Location.Lat
+		(*realestates)[i].Longitude = lagLng.Results[0].Geometry.Location.Lng
+	}
+
 	(*realestates)[0].Distance = h.byDistance(latitude, longitude, (*realestates)[0].Latitude, (*realestates)[0].Longitude)
 	nearRealestates := model.RealEstates{(*realestates)[0]}
 	for i, v := range *realestates {
