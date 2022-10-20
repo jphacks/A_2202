@@ -17,7 +17,7 @@ const InfoModal: React.FC<{
 
   const getRealEstateDetail = async (latitude: number, longitude: number) => {
     // const url =
-    //   "https://back-lpzceixskq-de.a.run.app/realestate/detail/str?name=ネオグランデ上町";
+    //   `https://back-lpzceixskq-de.a.run.app/realestate/detail/latlon?latitude=${latitude}&longitude=${longitude}`;
     const url = `http://localhost:8080/realestate/detail/latlon?latitude=${latitude}&longitude=${longitude}`;
     await fetch(url)
       .then((res: any) => res.json())
