@@ -10,12 +10,6 @@ type (
 		Longitude float64 `json:"longitude"`
 	}
 
-	Tranport struct {
-		StationName string `json:"station_name"`
-		RailroadName string `json:"railroad_name"`
-		StationWalkTime float64 `json:"station_walk_time"`
-	}
-
 	RealestateDetail struct {
 		Id string  `json:"id"`
 		Name string `json:"name"`
@@ -38,10 +32,8 @@ type (
 		Facility string `json:"facility"`
 		Neighbor string `json:"neighbor"`
 		CurrentStatus string `json:"current_status"`
-		Transportion []Tranport
 		Latitude float64 `json:"latitude"`
 		Longitude float64 `json:"longitude"`
-		Distance float64
 	}
 
 	RealestateLatLonNames []RealestateLatLonName
