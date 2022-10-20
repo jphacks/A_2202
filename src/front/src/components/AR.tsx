@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 import type { RealEstates } from "../types/realEstate";
 import AScene from "./aframe/AScene";
 import ACamera from "./aframe/ACamera";
-import AText from "./aframe/AText";
+import AAsset from "./aframe/AAssets";
+import AAsetItem from "./aframe/AAsetItem";
+
 
 const AR: React.FC<{
   latitude: number;
@@ -88,15 +90,18 @@ const AR: React.FC<{
         {Array.isArray(realEstates)
           ? realEstates.map((realEstate) => {
               return (
-                <AText
-                  key={realEstate.id}
-                  look-At={"[gps-camera]"}
-                  gps-Entity-Place={`latitude: ${realEstate.latitude}; longitude: ${realEstate.longitude};`}
-                  value={`${realEstate.name}`}
-                  scale={"1 1 1"}
-                  color={"red"}
-                  width={18}
-                />
+                // <AText
+                //   key={realEstate.id}
+                //   look-At={"[gps-camera]"}
+                //   gps-Entity-Place={`latitude: ${realEstate.latitude}; longitude: ${realEstate.longitude};`}
+                //   value={`${realEstate.name}`}
+                //   scale={"1 1 1"}
+                //   color={"red"}
+                //   width={18}
+                // />
+                <AAsset>
+                  <AAsetItem id="pin" src="/assets/pin.gltf" ></AAsetItem>
+                </AAsset>
               );
             })
           : "Fail"}
