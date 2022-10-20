@@ -4,16 +4,11 @@ import AScene from "./aframe/AScene";
 import ACamera from "./aframe/ACamera";
 import AText from "./aframe/AText";
 
-// なかじ3D表示、モーダルいい感じに
-
 const AR = () => {
   const [latitude, setLatitude] = useState<number>(0);
   const [longitude, setLongitude] = useState<number>(0);
-  // const [isDisplay, setDisplay] = useState<boolean>(true);
   const [articles, setArticles] = useState<[] | Realestates[]>([]);
-
-  // ここで緯度経度を取得してAPI叩く
-  // きた物件の緯度経度に合わせて描画
+  // const [isDisplay, setDisplay] = useState<boolean>(true);
 
   if (!navigator.geolocation) {
     window.alert("Your browser doesn't support Geolocation");
@@ -39,13 +34,17 @@ const AR = () => {
       setArticles([
         {
           id: "82ddbc14-9284-4ca8-abc0-037e6eaed6c3",
-          name: "ネオグランデ上町",
-          latitude: 37.4984575,
-          longitude: 139.9333053,
+          name: "Daiki",
+          latitude: 37.492151723031024,
+          longitude: 139.94461074269023,
+        },
+        {
+          id: "82ddbc14-9284-4ca8-abc0-nice",
+          name: "Sakuma",
+          latitude: 37.4922,
+          longitude: 139.94461074269023,
         },
       ]);
-      setLatitude(37.4984575);
-      setLongitude(139.9333053);
       // await fetch(url)
       //   .then((res: any) => res.json())
       //   .then((data) => {
@@ -65,13 +64,13 @@ const AR = () => {
     getArticles(latitude, longitude);
   }, [latitude, longitude]);
 
-  const commonProps = {
-    "look-At": "[gps-camera]",
-    "gps-entity-place":
-      "latitude: 37.492151723031024; longitude: 139.94461074269023;",
-    // `latitude: ${latitude}; longitude: ${longitude};`,
-    // "latitude: 37.5150016; longitude: 139.9335767;",
-  };
+  // const commonProps = {
+  //   "look-At": "[gps-camera]",
+  //   "gps-entity-place":
+  //     // "latitude: 37.492151723031024; longitude: 139.94461074269023;",
+  //     `latitude: ${latitude}; longitude: ${longitude};`,
+  //   // "latitude: 37.5150016; longitude: 139.9335767;",
+  // };
 
   // let isValid = true;
   // window.addEventListener("load", function () {
@@ -84,7 +83,6 @@ const AR = () => {
   //     }
   //     isValid = !isValid;
   //   });
-
   //   // TODO: オブジェクトタッチ判定
   //   // const tmp = document.getElementById("myobject");
   //   // console.log("tmp", tmp);
@@ -107,17 +105,35 @@ const AR = () => {
         // arjs="trackingMethod: best; sourceType: webcam; matrixCodeType: 3x3; detectionMode:mono_and_matrix; debugUIEnabled: false;"
       >
         <ACamera
-          gps-Camera="minDistance:30; maxDistance: 10000000000000000000; gpsMinDistance: 10"
+          gps-Camera="minDistance:30; maxDistance: 100; gpsMinDistance: 10"
           rotation-Reader=""
           // cursor="rayOrigin: mouse; fuse:false"
           // camera=""
         />
 
-        <AText
+        {Array.isArray(articles)
+          ? articles.map((element) => {
+              return (
+                <AText
+                  key={element.id}
+                  look-At={"[gps-camera]"}
+                  gps-Entity-Place={`latitude: ${element.latitude}; longitude: ${element.longitude};`}
+                  value={`Hello World! ${element.name}`}
+                  scale={"1 1 1"}
+                  color={"red"}
+                  width={18}
+                />
+              );
+            })
+          : "Fail"}
+
+        {/* <AText
           {...commonProps}
+          look-At={"[gps-camera]"}
+          gps-Entity-Place={`latitude: ${latitude}; longitude: ${longitude};`}
           // id="myobject"
           value={`Hello World!`}
-          scale={"0.5 0.5 0.5"}
+          scale={"1 1 1"}
           color={"red"}
           width={18}
           // visible={isDisplay}
@@ -125,7 +141,7 @@ const AR = () => {
           // align="center"
         />
 
-        {/* <AText
+        <AText
           {...commonProps}
           value={`${latitude}, ${longitude} \n My name is John!`}
           scale={"0.5 0.5 0.5"}
