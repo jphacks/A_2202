@@ -6,17 +6,19 @@ import ModalClose from "@mui/joy/ModalClose";
 import ModalDialog from "@mui/joy/ModalDialog";
 import Typography from "@mui/joy/Typography";
 
-const InfoModal = () => {
+const InfoModal: React.FC<{
+  latitude: number;
+  longitude: number;
+}> = ({ latitude, longitude }) => {
   const [open, setOpen] = useState(false);
   const [realEstateDetail, setRealEstateDetail] = useState<
     [] | RealEstateDetail[]
   >([]);
 
-  const getRealEstateDetail = async () => {
+  const getRealEstateDetail = async (latitude: number, longitude: number) => {
     // const url =
     //   "https://back-lpzceixskq-de.a.run.app/realestate/detail/str?name=ネオグランデ上町";
-    const url =
-      "http://localhost:8080/realestate/detail/str?name=ネオグランデ上町";
+    const url = `http://localhost:8080/realestate/detail/latlon?latitude=${latitude}&longitude=${longitude}`;
     await fetch(url)
       .then((res: any) => res.json())
       .then((data) => {
@@ -28,8 +30,8 @@ const InfoModal = () => {
   };
 
   useEffect(() => {
-    getRealEstateDetail();
-  }, []);
+    getRealEstateDetail(latitude, longitude);
+  }, [latitude, longitude]);
 
   return (
     <div>
