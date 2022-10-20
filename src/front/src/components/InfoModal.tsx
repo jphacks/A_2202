@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import type { RealEstateInfo } from "../types/realEstate";
+import type { RealEstateDetail } from "../types/realEstate";
 import Button from "@mui/joy/Button";
 import Modal from "@mui/joy/Modal";
 import ModalClose from "@mui/joy/ModalClose";
@@ -8,15 +8,19 @@ import Typography from "@mui/joy/Typography";
 
 const InfoModal = () => {
   const [open, setOpen] = useState(false);
-  const [articles, setArticles] = useState<[] | RealEstateInfo[]>([]);
+  const [realEstateDetail, setRealEstateDetail] = useState<
+    [] | RealEstateDetail[]
+  >([]);
 
-  const getArticles = async () => {
+  const getRealEstateDetail = async () => {
+    // const url =
+    //   "https://back-lpzceixskq-de.a.run.app/realestate/detail/str?name=ネオグランデ上町";
     const url =
-      "http://localhost:8080/realestate?latitude=37.492151723031024&longitude=139.94461074269023";
+      "http://localhost:8080/realestate/detail/str?name=ネオグランデ上町";
     await fetch(url)
       .then((res: any) => res.json())
       .then((data) => {
-        setArticles(data.Realestates);
+        setRealEstateDetail(data.RealEstateDetail);
       })
       .catch((err) => {
         console.error("ERROR API: ", err);
@@ -24,7 +28,7 @@ const InfoModal = () => {
   };
 
   useEffect(() => {
-    getArticles();
+    getRealEstateDetail();
   }, []);
 
   return (
@@ -53,15 +57,12 @@ const InfoModal = () => {
             物件情報
           </Typography>
           <Typography id="variant-modal-description" textColor="inherit">
-            会津レデンス
-          </Typography>
-          <ul>
-            {Array.isArray(articles)
-              ? articles.map((element) => {
-                  return <h2 key={element.id}>{element.name}</h2>;
+            {Array.isArray(realEstateDetail)
+              ? realEstateDetail.map((element) => {
+                  return <span key={element.id}>{element.name}</span>;
                 })
-              : "null"}
-          </ul>
+              : "Fail"}
+          </Typography>
         </ModalDialog>
       </Modal>
     </div>
