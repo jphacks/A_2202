@@ -13,17 +13,17 @@ const InfoModal = () => {
   >([]);
 
   const getRealEstateDetail = async () => {
-    // const url =
-    //   "https://back-lpzceixskq-de.a.run.app/realestate/detail/str?name=ネオグランデ上町";
     const url =
-      "http://localhost:8080/realestate/detail/str?name=ネオグランデ上町";
+      "https://back-lpzceixskq-de.a.run.app/realestate/detail/str?name=ネオグランデ上町";
+    // const url =
+    //   "http://localhost:8080/realestate/detail/str?name=ネオグランデ上町";
     await fetch(url)
       .then((res: any) => res.json())
       .then((data) => {
         setRealEstateDetail(data.RealEstateDetail);
       })
       .catch((err) => {
-        console.error("ERROR API: ", err);
+        window.alert("ERROR API: " + err);
       });
   };
 
