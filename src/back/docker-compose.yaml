@@ -6,17 +6,5 @@ services:
       - "8080:8080"
     volumes:
       - ./go:/go/src/app
-    depends_on:
-      - mysql
     tty: true
     command: go run main.go
-
-  mysql:
-    build: ./mysql/
-    volumes:
-      - ./mysql/initdb.d:/docker-entrypoint-initdb.d
-      - ./mysql/db:/var/lib/mysql
-    image: mysqlapp
-    container_name: "mysqlapp"
-    environment:
-      - MYSQL_ROOT_PASSWORD=pass
