@@ -25,7 +25,7 @@ const AR = () => {
     );
   }
 
-  const getArticles = async (latitude: any, longitude: any) => {
+  const getArticles = async (latitude: number, longitude: number) => {
     if (latitude !== 0 && longitude !== 0) {
       const url =
         // "http://localhost:8080/realestate?latitude=37.492151723031024&longitude=139.94461074269023";
@@ -118,7 +118,7 @@ const AR = () => {
                   key={element.id}
                   look-At={"[gps-camera]"}
                   gps-Entity-Place={`latitude: ${element.latitude}; longitude: ${element.longitude};`}
-                  value={`Hello World! ${element.name}`}
+                  value={`${element.name}`}
                   scale={"1 1 1"}
                   color={"red"}
                   width={18}
