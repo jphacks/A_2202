@@ -2,11 +2,11 @@ package repository
 
 import (
 	"app/model"
-	"app/util"
 	"encoding/json"
 	"fmt"
 	"io"
 	"net/http"
+	"os"
 )
 
 type (
@@ -35,9 +35,9 @@ func (r *Geocoding) Index(lon, lat float64) (*model.Gecode, error) {
 	params := req.URL.Query()
     params.Add("latlng",fmt.Sprintf("%v, %v", lon, lat))
 	params.Add("language", "ja")
-	apiKey, err := util.LoadEnv("GOOGLE_MAP_API_KEY")
-	if err != nil {
-		return nil, err
+	apiKey := os.Getenv("GOOGLE_MAP_API_KEY")
+	if apiKey == "" {
+		return nil, fmt.Errorf("API key not set")
 	}
 	params.Add("key", apiKey)
     req.URL.RawQuery = params.Encode()
@@ -66,9 +66,9 @@ func (r *Geocoding) AddressToGecode(addr string) (*model.Gecode, error) {
 	params := req.URL.Query()
     params.Add("address", addr)
 	params.Add("language", "ja")
-	apiKey, err := util.LoadEnv("GOOGLE_MAP_API_KEY")
-	if err != nil {
-		return nil, err
+	apiKey := os.Getenv("GOOGLE_MAP_API_KEY")
+	if apiKey == "" {
+		return nil, fmt.Errorf("API key not set")
 	}
 	params.Add("key", apiKey)
     req.URL.RawQuery = params.Encode()

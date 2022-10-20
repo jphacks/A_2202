@@ -32,7 +32,7 @@ func Init(e *echo.Echo) {
 
 func (r V1) withNone(e *echo.Echo) {
 	e.GET("/hello", func(c echo.Context) error {
-		return c.String(http.StatusOK, "oyasumi dayo")
+		return c.String(http.StatusOK, "oyasumi kana")
 	})
 	// e.GET("/realestate", r.realestateHandler.Index)
 	e.GET("/realestate", r.realestateHandler.ByLatLon)
