@@ -27,8 +27,6 @@ export type RealEstateDetail = {
   facility: string;
   neighbor: string;
   current_status: string;
-  Transportion: any;
   latitude: number;
   longitude: number;
-  Distance: number;
 };
