@@ -73,14 +73,14 @@ const AR: React.FC<{
       <AScene
         vr-Mode-Ui="enabled: false"
         embedded=""
-        arjs="sourceType: webcam; debugUIEnabled: false;"
+        arjs="sourceType: webcam; debugUIEnabled: false"
         // webxr="optionalFeatures:  hit-test;"
         // ar-hit-test="target:#myobject;"
         // renderer="colorManagement: true"
         // arjs="trackingMethod: best; sourceType: webcam; matrixCodeType: 3x3; detectionMode:mono_and_matrix; debugUIEnabled: false;"
       >
         <ACamera
-          gps-Camera="minDistance:30; maxDistance: 100; gpsMinDistance: 10"
+          gps-Camera="maxDistance: 100; gpsMinDistance: 0"
           rotation-Reader=""
           // cursor="rayOrigin: mouse; fuse:false"
           // camera=""
