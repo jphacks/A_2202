@@ -5,7 +5,6 @@ import AR from "./components/AR";
 import WarningIcon from "@mui/icons-material/Warning";
 import Alert from "@mui/joy/Alert";
 import Typography from "@mui/joy/Typography";
-import CircularProgress from "@mui/joy/CircularProgress";
 
 const App = () => {
   const [latitude, setLatitude] = useState<number>(0);
@@ -18,7 +17,10 @@ const App = () => {
         variant="solid"
         color="danger"
         sx={{
-          height: "40px",
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%,-50%)",
         }}
       >
         <Typography sx={{ color: "white" }} fontWeight="md">
@@ -39,7 +41,18 @@ const App = () => {
   }
 
   if (latitude === 0 && longitude === 0)
-    return <CircularProgress variant="soft" size="lg" />;
+    return (
+      <img
+        style={{
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: "translate(-50%,-50%)",
+        }}
+        src={"/assets/giffycanvas-unscreen.gif"}
+        alt="Please wait until the page loads."
+      />
+    );
 
   return (
     <div className="App">
