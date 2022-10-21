@@ -21,18 +21,25 @@ const InfoModal: React.FC<{
   >([]);
 
   const getRealEstateDetail = async (latitude: number, longitude: number) => {
-    // const url = `https://back-lpzceixskq-de.a.run.app/realestate/detail/latlon?latitude=${latitude}&longitude=${longitude}`;
-    const url = `http://localhost:8080/realestate/detail/latlon?latitude=${latitude}&longitude=${longitude}`;
-    // window.alert("InfoModal url" + url);
+    const url = `https://back-lpzceixskq-de.a.run.app/realestate/detail/latlon?latitude=${latitude}&longitude=${longitude}`;
+    // const url = `http://localhost:8080/realestate/detail/latlon?latitude=${latitude}&longitude=${longitude}`;
+    window.alert("InfoModal url" + url);
+    // console.log("InfoModal url", url);
+    // setRealEstateDetail([
+    //   {
+    //     id: "82ddbc14-9284-4ca8-abc0-037e6eaed6c3",
+    //     name: "Test",
+    //   },
+    // ]);
     await fetch(url)
       .then((res: any) => res.json())
       .then((data) => {
         setRealEstateDetail(data.RealEstateDetails);
+        window.alert("InfoModal data.Realestates" + data.Realestates);
       })
       .catch((err) => {
         window.alert("Failed to get API!");
-        // window.alert("InfoModal data.Realestates" + data.Realestates);
-      })
+      });
   };
 
   useEffect(() => {
@@ -58,8 +65,19 @@ const InfoModal: React.FC<{
   };
 
   return (
-    <div id="modal">
-      <Button color="primary" onClick={() => setIsOpen(true)}>
+    <div
+      style={{
+        position: "absolute",
+        top: "90%",
+        left: "50%",
+        transform: "translate(-50%,-50%)",
+      }}
+    >
+      <Button
+        variant="solid"
+        style={{ backgroundColor: "#75CDD9" }}
+        onClick={() => setIsOpen(true)}
+      >
         Information
       </Button>
       <Modal
