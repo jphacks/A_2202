@@ -18,7 +18,7 @@ type RealEstate struct{
     Address string `json:"address"`
     CatchCopy string `json:"catch_copy"`
     RoomCount int64 `json:"room_count"`
-    FloorPlan string `json:"floor_plan"`
+    FlorPlan string `json:"flor_plan"`
     Direction string `json:"direction"`
     PropetyStoructure string `json:"propety_storucture"`
     TotalGroundStory int64 `json:"total_ground_story"`

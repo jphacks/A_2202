@@ -30,11 +30,11 @@ type (
 	}
 
 	JSONRealEstateDetail struct {
-		RealEstateDetail *response.RealestateDetails `json:"realestates`
+		RealEstateDetails *response.RealestateDetails `json:"realestates`
 	}
 
 	JSONRealEstateNear struct {
-		RealEstateDetail *response.RealestateDetail `json:"realestates`
+		RealEstateDetails *response.RealestateDetails `json:"realestates`
 	}
 )
 
@@ -89,7 +89,7 @@ func (h *RealEstate) ByName(c echo.Context) error {
 	}
 
 	return c.JSON(http.StatusOK, &JSONRealEstateDetail{
-		RealEstateDetail: response.NewRealEstateDetails(realestates),
+		RealEstateDetails: response.NewRealEstateDetails(realestates),
 	})
 }
 
@@ -116,17 +116,26 @@ func (h *RealEstate) ByNear(c echo.Context) error {
 		return c.JSON(http.StatusBadRequest, fmt.Sprintf("%v", err))
 	}
 
+	for i, v := range *realestates {
+		lagLng, err := h.geocodingService.GetGeocodeByAdd(v.Address)
+		if err != nil {
+			return c.JSON(http.StatusBadRequest, fmt.Sprintf("%v", err))
+		}
+		(*realestates)[i].Latitude = lagLng.Results[0].Geometry.Location.Lat
+		(*realestates)[i].Longitude = lagLng.Results[0].Geometry.Location.Lng
+	}
+
 	(*realestates)[0].Distance = h.byDistance(latitude, longitude, (*realestates)[0].Latitude, (*realestates)[0].Longitude)
-	nearRealestate := (*realestates)[0]
+	nearRealestates := model.RealEstates{(*realestates)[0]}
 	for i, v := range *realestates {
 		(*realestates)[i].Distance = h.byDistance(latitude, longitude, v.Latitude, v.Longitude)
-		if (*realestates)[i].Distance < nearRealestate.Distance {
-			nearRealestate = (*realestates)[i]
+		if (*realestates)[i].Distance < nearRealestates[0].Distance {
+			nearRealestates[0] = (*realestates)[i]
 		}
 	}
 
 	return c.JSON(http.StatusOK, &JSONRealEstateNear{
-		RealEstateDetail: response.NewRealEstateDetail(&nearRealestate),
+		RealEstateDetails: response.NewRealEstateDetails(&nearRealestates),
 	})
 }
 

@@ -1,4 +1,4 @@
-export type Realestates = {
+export type RealEstates = {
   id: string;
   name: string;
   latitude: number;
@@ -27,8 +27,6 @@ export type RealEstateDetail = {
   facility: string;
   neighbor: string;
   current_status: string;
-  Transportion: any;
   latitude: number;
   longitude: number;
-  Distance: number;
 };

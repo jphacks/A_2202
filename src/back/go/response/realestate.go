@@ -10,12 +10,6 @@ type (
 		Longitude float64 `json:"longitude"`
 	}
 
-	Tranport struct {
-		StationName string `json:"station_name"`
-		RailroadName string `json:"railroad_name"`
-		StationWalkTime float64 `json:"station_walk_time"`
-	}
-
 	RealestateDetail struct {
 		Id string  `json:"id"`
 		Name string `json:"name"`
@@ -28,7 +22,7 @@ type (
 		Address string `json:"address"`
 		CatchCopy string `json:"catch_copy"`
 		RoomCount int64 `json:"room_count"`
-		FloorPlan string `json:"floor_plan"`
+		FlorPlan string `json:"flor_plan"`
 		Direction string `json:"direction"`
 		PropetyStoructure string `json:"propety_storucture"`
 		TotalGroundStory int64 `json:"total_ground_story"`
@@ -38,10 +32,8 @@ type (
 		Facility string `json:"facility"`
 		Neighbor string `json:"neighbor"`
 		CurrentStatus string `json:"current_status"`
-		Transportion []Tranport
 		Latitude float64 `json:"latitude"`
 		Longitude float64 `json:"longitude"`
-		Distance float64
 	}
 
 	RealestateLatLonNames []RealestateLatLonName
@@ -96,7 +88,7 @@ func NewRealEstateDetail(m *model.RealEstate) *RealestateDetail {
 		Address: m.Address,
 		CatchCopy: m.CatchCopy,
 		RoomCount: m.RoomCount,
-		FloorPlan: m.FloorPlan,
+		FlorPlan: m.FlorPlan,
 		Direction: m.Direction,
 		PropetyStoructure: m.PropetyStoructure,
 		TotalGroundStory: m.TotalGroundStory,
