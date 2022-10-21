@@ -1,20 +1,15 @@
 import React, { useState, useEffect } from "react";
-import "./InfoModal.css";
+import "./RealEstateModal.css";
 import type { RealEstateDetail } from "../types/realEstate";
 import Button from "@mui/joy/Button";
-// import Modal from "@mui/joy/Modal";
-import Modal from "react-modal";
-import ModalClose from "@mui/joy/ModalClose";
-import ModalDialog from "@mui/joy/ModalDialog";
-import Typography from "@mui/joy/Typography";
-import Sheet from "@mui/joy/Sheet";
 import CloseIcon from "@mui/icons-material/Close";
+import Modal from "react-modal";
 
-const InfoModal: React.FC<{
+const RealEstateModal: React.FC<{
   latitude: number;
   longitude: number;
 }> = ({ latitude, longitude }) => {
-  const [open, setOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
   const [realEstateDetail, setRealEstateDetail] = useState<
     [] | RealEstateDetail[]
   >([]);
@@ -23,22 +18,22 @@ const InfoModal: React.FC<{
     if (latitude !== 0 && longitude !== 0) {
       const url = `https://back-lpzceixskq-de.a.run.app/realestate/detail/latlon?latitude=${latitude}&longitude=${longitude}`;
       // const url = `http://localhost:8080/realestate/detail/latlon?latitude=${latitude}&longitude=${longitude}`;
-      // window.alert("InfoModal url" + url);
       // console.log("InfoModal url", url);
       // setRealEstateDetail([
       //   {
       //     id: "82ddbc14-9284-4ca8-abc0-037e6eaed6c3",
       //     name: "Test",
+      //     price: 100,
+      //     year_builds: 20,
       //   },
       // ]);
       await fetch(url)
         .then((res: any) => res.json())
         .then((data) => {
           setRealEstateDetail(data.RealEstateDetails);
-          // window.alert("InfoModal data.Realestates" + data.Realestates);
         })
         .catch((err) => {
-          // window.alert("Failed to get API!");
+          window.alert("Failed to get API!");
         });
     }
   };
@@ -46,7 +41,6 @@ const InfoModal: React.FC<{
   useEffect(() => {
     getRealEstateDetail(latitude, longitude);
   }, [latitude, longitude]);
-  const [modalIsOpen, setIsOpen] = useState<boolean>(false);
 
   Modal.setAppElement("#root");
 
@@ -83,17 +77,15 @@ const InfoModal: React.FC<{
       </Button>
       <Modal
         style={customStyles}
-        isOpen={modalIsOpen}
+        isOpen={isOpen}
         onRequestClose={() => setIsOpen(false)}
       >
         <div>
           {realEstateDetail.length !== 0 ? (
-            <div>
+            <>
               <div className="wrapper">
                 <div className="next-to-close-button">
-                  <Typography className="title">
-                    {realEstateDetail[0].name}
-                  </Typography>
+                  <div className="title">{realEstateDetail[0].name}</div>
                 </div>
                 <div className="px-4 py-3">
                   <button
@@ -107,80 +99,64 @@ const InfoModal: React.FC<{
               <table className="modal-table">
                 <tbody className="modal-tbody">
                   {realEstateDetail[0].price ? (
-                  <tr>
-                    <th>値段</th>
-                    <td>{realEstateDetail[0].price} 円</td>
-                  </tr>
-                   ) : (
-                    null
-                  )}
+                    <tr>
+                      <th>値段</th>
+                      <td>{realEstateDetail[0].price} 円</td>
+                    </tr>
+                  ) : null}
                   {realEstateDetail[0].year_builds ? (
-                  <tr>
-                    <th>設立年</th>
-                    <td>{realEstateDetail[0].year_builds} 年</td>
-                  </tr>
-                  ) : (
-                   null
-                  )}
+                    <tr>
+                      <th>設立年</th>
+                      <td>{realEstateDetail[0].year_builds} 年</td>
+                    </tr>
+                  ) : null}
                   {realEstateDetail[0].address ? (
-                  <tr>
-                    <th>住所</th>
-                    <td>{realEstateDetail[0].address}</td>
-                  </tr>
-                  ) : (
-                   null
-                  )}
-                   {realEstateDetail[0].room_count ? (
-                  <tr>
-                    <th>部屋数</th>
-                    <td>{realEstateDetail[0].room_count}</td>
-                  </tr>
-                  ) : (
-                   null
-                  )}
+                    <tr>
+                      <th>住所</th>
+                      <td>{realEstateDetail[0].address}</td>
+                    </tr>
+                  ) : null}
+                  {realEstateDetail[0].room_count ? (
+                    <tr>
+                      <th>部屋数</th>
+                      <td>{realEstateDetail[0].room_count}</td>
+                    </tr>
+                  ) : null}
                   {realEstateDetail[0].propety_storucture ? (
-                  <tr>
-                    <th>構造</th>
-                    <td>{realEstateDetail[0].propety_storucture}</td>
-                  </tr>
-                  ) : (
-                   null
-                  )}
+                    <tr>
+                      <th>構造</th>
+                      <td>{realEstateDetail[0].propety_storucture}</td>
+                    </tr>
+                  ) : null}
                   {realEstateDetail[0].total_ground_story ? (
-                  <tr>
-                    <th>階数</th>
-                    <td>{realEstateDetail[0].total_ground_story} 階</td>
-                  </tr>
-                  ) : (
-                   null
-                  )}
+                    <tr>
+                      <th>階数</th>
+                      <td>{realEstateDetail[0].total_ground_story} 階</td>
+                    </tr>
+                  ) : null}
                   {realEstateDetail[0].under_ground_story ? (
-                  <tr>
-                    <th>地下階数</th>
-                    <td>{realEstateDetail[0].under_ground_story} 階</td>
-                  </tr>
-                  ) : (
-                   null
-                  )}
+                    <tr>
+                      <th>地下階数</th>
+                      <td>{realEstateDetail[0].under_ground_story} 階</td>
+                    </tr>
+                  ) : null}
                   {realEstateDetail[0].fee ? (
-                  <tr>
-                    <th>賃貸料</th>
-                    <td>{realEstateDetail[0].fee} 円</td>
-                  </tr>
-                  ) : (
-                    null
-                   )}
+                    <tr>
+                      <th>賃貸料</th>
+                      <td>{realEstateDetail[0].fee} 円</td>
+                    </tr>
+                  ) : null}
                   {/* {realEstateDetail[0].facility ? (
                   <tr>
                     <th>設備</th>
                     <td>{realEstateDetail[0].facility}</td>
                   </tr>
-                   ) : (
+                  ) : (
                     null
                    )} */}
                 </tbody>
               </table>
-            </div>
+            </>
           ) : (
             "No Data"
           )}
@@ -190,4 +166,4 @@ const InfoModal: React.FC<{
   );
 };
 
-export default InfoModal;
+export default RealEstateModal;

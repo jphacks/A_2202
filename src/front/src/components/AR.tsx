@@ -10,14 +10,13 @@ const AR: React.FC<{
   latitude: number;
   longitude: number;
 }> = ({ latitude, longitude }) => {
-  const [realEstates, setRealEstates] = useState<[] | RealEstates[]>([]);
+  const [realEstates, setRealEstates] = useState<RealEstates[]>([]);
   // const [isDisplay, setDisplay] = useState<boolean>(true);
 
   const getRealEstates = async (latitude: number, longitude: number) => {
     if (latitude !== 0 && longitude !== 0) {
       const url = `https://back-lpzceixskq-de.a.run.app/realestate?latitude=${latitude}&longitude=${longitude}`;
       // const url = `http://localhost:8080/realestate?latitude=${latitude}&longitude=${longitude}`;
-      // window.alert("AR url" + url);
       // console.log("AR url", url);
       // setRealEstates([
       //   {
@@ -37,11 +36,9 @@ const AR: React.FC<{
         .then((res: any) => res.json())
         .then((data) => {
           setRealEstates(data.Realestates);
-          // console.log("AR data.Realestates", data.Realestates);
-          // window.alert("AR data.Realestates" + data.Realestates);
         })
         .catch((err) => {
-          // window.alert("Failed to get API!");
+          window.alert("Failed to get API!");
         });
     }
   };
