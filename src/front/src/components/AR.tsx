@@ -15,9 +15,9 @@ const AR: React.FC<{
 
   const getRealEstates = async (latitude: number, longitude: number) => {
     if (latitude !== 0 && longitude !== 0) {
-      const url = `https://back-lpzceixskq-de.a.run.app/realestate?latitude=${latitude}&longitude=${longitude}`;
-      // const url = `http://localhost:8080/realestate?latitude=${latitude}&longitude=${longitude}`;
-      window.alert("AR url" + url);
+      // const url = `https://back-lpzceixskq-de.a.run.app/realestate?latitude=${latitude}&longitude=${longitude}`;
+      const url = `http://localhost:8080/realestate?latitude=${latitude}&longitude=${longitude}`;
+      // window.alert("AR url" + url);
       // console.log("AR url", url);
       // setRealEstates([
       //   {
@@ -38,10 +38,10 @@ const AR: React.FC<{
         .then((data) => {
           setRealEstates(data.Realestates);
           // console.log("AR data.Realestates", data.Realestates);
-          window.alert("AR data.Realestates" + data.Realestates);
+          // window.alert("AR data.Realestates" + data.Realestates);
         })
         .catch((err) => {
-          window.alert("Failed to get API!");
+          // window.alert("Failed to get API!");
         });
     }
   };
@@ -65,7 +65,7 @@ const AR: React.FC<{
   //   // const tmp = document.getElementById("myobject");
   //   // console.log("tmp", tmp);
   //   // tmp?.addEventListener("click", () => {
-  //   //   window.alert("tmp");
+  //   //   // window.alert("tmp");
   //   // });
   // });
 
