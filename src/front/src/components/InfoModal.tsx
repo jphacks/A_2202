@@ -1,10 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react"
+import './InfoModal.css';
 import type { RealEstateDetail } from "../types/realEstate";
 import Button from "@mui/joy/Button";
-import Modal from "@mui/joy/Modal";
+// import Modal from "@mui/joy/Modal";
+import Modal from 'react-modal';
 import ModalClose from "@mui/joy/ModalClose";
 import ModalDialog from "@mui/joy/ModalDialog";
 import Typography from "@mui/joy/Typography";
+import Card from '@mui/joy/Card';
+import CloseIcon from '@mui/icons-material/Close';
+
 
 const InfoModal: React.FC<{
   latitude: number;
@@ -33,240 +38,107 @@ const InfoModal: React.FC<{
   useEffect(() => {
     getRealEstateDetail(latitude, longitude);
   }, [latitude, longitude]);
+  const [modalIsOpen, setIsOpen] = useState<boolean>(false);
+
+  Modal.setAppElement('#root')
+
+  // モーダルを画面中央に表示する用のスタイル
+  const customStyles = {
+    content: {
+      width:'50%',
+      top: '50%',
+      left: '50%',
+      right: 'auto',
+      bottom: 'auto',
+      marginRight: '-50%',
+      transform: 'translate(-50%, -50%)',
+    },
+  };
 
   return (
-    <div>
-      <Button variant="solid" color="primary" onClick={() => setOpen(true)}>
+    <div id="modal">
+      <Button variant="soft" color="primary" onClick={() => setIsOpen(true)}>
         Information
       </Button>
       <Modal
-        open={open}
-        onClose={() => {
-          setOpen(false);
-        }}
-      >
-        <ModalDialog
-          aria-labelledby="variant-modal-title"
-          aria-describedby="variant-modal-description"
-        >
-          <ModalClose />
-          <Typography
-            id="variant-modal-title"
-            component="h2"
-            level="inherit"
-            fontSize="1.25em"
-            mb="1.25em"
-          >
-            物件情報
-          </Typography>
-          
-            {realEstateDetail.length !== 0
-              ?
-              <div>
-                <Typography
-                  fontSize="1.2em"
-                  mb="0.25em"
-                >
-                  建物名
-                </Typography>
-                <Typography textColor="inherit">
+      style={customStyles}
+      isOpen={modalIsOpen} onRequestClose={() => setIsOpen(false)} >
+      <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+        {realEstateDetail.length !== 0
+          ?
+          <div>
+            <div className="wrapper">
+              <Card className="next-to-close-button">
+                <Typography>
                   {realEstateDetail[0].name}
-                </Typography>
-                <Typography
-                  fontSize="1.2em"
-                  mb="0.25em"
-                >
-                  種類
-                </Typography>
-                <Typography textColor="inherit">
-                  {realEstateDetail[0].property_type} 円
-                </Typography>
-                <Typography
-                  fontSize="1.2em"
-                  mb="0.25em"
-                >
-                  値段
-                </Typography>
-                <Typography textColor="inherit">
-                  {realEstateDetail[0].price}
-                </Typography>
-                <Typography
-                  fontSize="1.2em"
-                  mb="0.25em"
-                >
-                  賃貸料
-                </Typography>
-                <Typography textColor="inherit">
-                  {realEstateDetail[0].rent}
-                </Typography>
-                <Typography
-                  fontSize="1.2em"
-                  mb="0.25em"
-                >
-                  契約形態
-                </Typography>
-                <Typography textColor="inherit">
-                  {realEstateDetail[0].transaction_contents}
-                </Typography>
-                <Typography
-                  fontSize="1.2em"
-                  mb="0.25em"
-                >
-                  敷地面積
-                </Typography>
-                <Typography textColor="inherit">
-                  {realEstateDetail[0].area}
-                </Typography>
-                <Typography
-                  fontSize="1.2em"
-                  mb="0.25em"
-                >
-                  設立年
-                </Typography>
-                <Typography textColor="inherit">
-                  {realEstateDetail[0].year_builds}
-                </Typography>
-                <Typography
-                  fontSize="1.2em"
-                  mb="0.25em"
-                >
-                  住所
-                </Typography>
-                <Typography textColor="inherit">
-                  {realEstateDetail[0].address}
-                </Typography>
-                <Typography
-                  fontSize="1.2em"
-                  mb="0.25em"
-                >
-                  キャッチコピー
-                </Typography>
-                <Typography textColor="inherit">
-                  {realEstateDetail[0].catch_copy}
-                </Typography>
-                <Typography
-                  fontSize="1.2em"
-                  mb="0.25em"
-                >
-                  部屋数
-                </Typography>
-                < div className="m-4 p-1">Hello World</ div>
-                {/* 
-                <Typography textColor="inherit">
-                  {realEstateDetail[0].room_count}
-                </Typography>
-                <Typography
-                  fontSize="1.2em"
-                  mb="0.25em"
-                >
-                  フロア数
-                </Typography>
-                <Typography textColor="inherit">
-                  {realEstateDetail[0].floor_plan}
-                </Typography>
-                <Typography
-                  fontSize="1.2em"
-                  mb="0.25em"
-                >
-                  方角
-                </Typography>
-                <Typography textColor="inherit">
-                  {realEstateDetail[0].direction}
-                </Typography>
-                <Typography
-                  fontSize="1.2em"
-                  mb="0.25em"
-                >
-                  構造
-                </Typography>
-                <Typography textColor="inherit">
-                  {realEstateDetail[0].propety_storucture}
-                </Typography>
-                <Typography
-                  fontSize="1.2em"
-                  mb="0.25em"
-                >
-                  階数
-                </Typography>
-                <Typography textColor="inherit">
-                  {realEstateDetail[0].total_ground_story}
-                </Typography>
-                <Typography
-                  fontSize="1.2em"
-                  mb="0.25em"
-                >
-                  地下階数
-                </Typography>
-                <Typography textColor="inherit">
-                  {realEstateDetail[0].under_ground_story}
-                </Typography>
-                <Typography
-                  fontSize="1.2em"
-                  mb="0.25em"
-                >
-                  物件情報
-                </Typography>
-                <Typography textColor="inherit">
-                  {realEstateDetail[0].total_unit}
-                </Typography>
-                <Typography
-                  fontSize="1.2em"
-                  mb="0.25em"
-                >
-                  物件情報
-                </Typography> */}
-                {/* <Typography textColor="inherit">
-                  {realEstateDetail[0].fee}
-                </Typography>
-                <Typography
-                  fontSize="1.2em"
-                  mb="0.25em"
-                >
-                  物件情報
-                </Typography>
-                <Typography textColor="inherit">
-                  {realEstateDetail[0].facility}
-                </Typography>
-                <Typography
-                  fontSize="1.2em"
-                  mb="0.25em"
-                >
-                  物件情報
-                </Typography>
-                <Typography textColor="inherit">
-                  {realEstateDetail[0].neighbor}
-                </Typography>
-                <Typography
-                  fontSize="1.2em"
-                  mb="0.25em"
-                >
-                  物件情報
-                </Typography>
-                <Typography textColor="inherit">
-                  {realEstateDetail[0].current_status}
-                </Typography>
-                <Typography
-                  fontSize="1.2em"
-                  mb="0.25em"
-                >
-                  物件情報
-                </Typography>
-                <Typography textColor="inherit">
-                  {realEstateDetail[0].latitude}
-                </Typography>
-                <Typography
-                  fontSize="1.2em"
-                  mb="0.25em"
-                >
-                  物件情報
-                </Typography>
-                <Typography textColor="inherit">
-                  {realEstateDetail[0].longitude}
-                </Typography> */}
+                </Typography >
+              </Card>
+              <div className="px-4 py-3">
+                <Button color="danger" size="sm" variant="soft" disabled={false} onClick={() => setIsOpen(false)}><CloseIcon/></Button>
               </div>
-              : "No Data"}
-        </ModalDialog>
-      </Modal>
+            </div>
+            <table className="modal-table">
+              <tbody className="modal-tbody">
+                  <tr>
+                      <th>見出し</th>
+                      <td>テキストが入ります</td>
+                      <td>テキストが入ります</td>
+                      <td>テキストが入ります</td>
+                  </tr>
+                  <tr>
+                      <th>見出し</th>
+                      <td>テキストが入ります</td>
+                      <td>テキストが入ります</td>
+                      <td>テキストが入ります</td>
+                  </tr>
+                  <tr>
+                      <th>見出し</th>
+                      <td>テキストが入ります</td>
+                      <td>テキストが入ります</td>
+                      <td>テキストが入ります</td>
+                  </tr>
+                  <tr>
+                      <th>見出し</th>
+                      <td>テキストが入ります</td>
+                      <td>テキストが入ります</td>
+                      <td>テキストが入ります</td>
+                  </tr>
+                  <tr>
+                      <th>見出し</th>
+                      <td>テキストが入ります</td>
+                      <td>テキストが入ります</td>
+                      <td>テキストが入ります</td>
+                  </tr>
+              </tbody>
+            </table>
+            <Typography
+              fontSize="1.2em"
+              mb="0.25em"
+            >
+              建物名
+            </Typography>
+            <Typography textColor="inherit">
+              {realEstateDetail[0].name}
+            </Typography>
+            <Typography
+              fontSize="1.2em"
+              mb="0.25em"
+            >
+              種類
+            </Typography>
+            <Typography textColor="inherit">
+              {realEstateDetail[0].property_type} 円
+            </Typography>
+            <Typography
+              fontSize="1.2em"
+              mb="0.25em"
+            >
+            </Typography>
+        </div>
+      : "No Data"}
+      </div>
+      
+    </Modal>
     </div>
   );
 };

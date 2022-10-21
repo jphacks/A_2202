@@ -1,0 +1,21 @@
+.wrapper{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 3rem;
+}
+.next-to-close-button {
+    width: 90%;
+    margin-right: 5%;
+    background-color: rgba(169, 236, 236, 0.353);
+}
+table {
+    border-collapse:  collapse; /* セルの線を重ねる */
+}
+ 
+tr:nth-child(odd) {
+    background-color:  #ddd;    /* 背景色指定 */
+}
+ 
+th,td {
+    padding: 5px 10px;          /* 余白指定 */
+}
