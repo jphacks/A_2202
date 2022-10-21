@@ -23,11 +23,11 @@ const InfoModal: React.FC<{
       .then((res: any) => res.json())
       .then((data) => {
         setRealEstateDetail(data.RealEstateDetails);
+        // window.alert("InfoModal data.Realestates" + data.Realestates);
       })
       .catch((err) => {
         window.alert("Failed to get API!");
-        // window.alert("InfoModal data.Realestates" + data.Realestates);
-      })
+      });
   };
 
   useEffect(() => {
@@ -35,8 +35,19 @@ const InfoModal: React.FC<{
   }, [latitude, longitude]);
 
   return (
-    <div>
-      <Button variant="solid" color="primary" onClick={() => setOpen(true)}>
+    <div
+      style={{
+        position: "absolute",
+        top: "90%",
+        left: "50%",
+        transform: "translate(-50%,-50%)",
+      }}
+    >
+      <Button
+        variant="solid"
+        style={{ backgroundColor: "#75CDD9" }}
+        onClick={() => setOpen(true)}
+      >
         Information
       </Button>
       <Modal

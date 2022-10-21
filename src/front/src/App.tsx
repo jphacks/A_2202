@@ -1,33 +1,16 @@
-import React, { useState } from "react";
-// import "./App.css";
-import InfoModal from "./components/InfoModal";
+import React, { useEffect, useState } from "react";
+import AScene from "./components/aframe/AScene";
 import AR from "./components/AR";
-import WarningIcon from "@mui/icons-material/Warning";
-import Alert from "@mui/joy/Alert";
-import Typography from "@mui/joy/Typography";
+import InfoModal from "./components/InfoModal";
 
 const App = () => {
+  const [showComponent, setShowComponent] = useState(false);
+  const [showComponent2, setShowComponent2] = useState(false);
   const [latitude, setLatitude] = useState<number>(0);
   const [longitude, setLongitude] = useState<number>(0);
 
   if (!navigator.geolocation) {
-    return (
-      <Alert
-        startDecorator={<WarningIcon sx={{ mx: 0.5 }} />}
-        variant="solid"
-        color="danger"
-        sx={{
-          position: "absolute",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%,-50%)",
-        }}
-      >
-        <Typography sx={{ color: "white" }} fontWeight="md">
-          Your browser doesn't support Geolocation.
-        </Typography>
-      </Alert>
-    );
+    window.alert("Your browser doesn't support Geolocation.");
   } else {
     navigator.geolocation.getCurrentPosition(
       (position) => {
@@ -40,7 +23,24 @@ const App = () => {
     );
   }
 
-  if (latitude === 0 && longitude === 0)
+  useEffect(() => {
+    const toRef = setTimeout(() => {
+      setShowComponent(true);
+      clearTimeout(toRef);
+    }, 2500);
+  }, []);
+
+  useEffect(() => {
+    if (showComponent) {
+      const toRef = setTimeout(() => {
+        setShowComponent(false);
+        setShowComponent2(true);
+        clearTimeout(toRef);
+      }, 4000);
+    }
+  }, [showComponent]);
+
+  const gif = () => {
     return (
       <img
         style={{
@@ -53,23 +53,35 @@ const App = () => {
         alt="Please wait until the page loads."
       />
     );
+  };
 
   return (
-    <div className="App">
-      <AR latitude={latitude} longitude={longitude} />
-      <div
-        style={{
-          zIndex: 100000000000000000,
-          position: "absolute",
-          bottom: "1rem",
-          right: "1rem",
-          width: "120px",
-          height: "120px",
-        }}
+    <>
+      {showComponent2 && (
+        <img
+          style={{
+            position: "absolute",
+            top: "20px",
+            left: "15px",
+            width: "150px",
+          }}
+          src={"/assets/yurucamp-logo.svg"}
+          alt="Logo"
+        />
+      )}
+      <AScene
+        style={{ width: "200vw", height: "100vh" }}
+        vr-Mode-Ui="enabled: false"
+        embedded=""
+        arjs="sourceType: webcam; debugUIEnabled: false"
       >
+        {showComponent2 && <AR latitude={latitude} longitude={longitude} />}
+      </AScene>
+      {showComponent2 && (
         <InfoModal latitude={latitude} longitude={longitude} />
-      </div>
-    </div>
+      )}
+      {showComponent && gif()}
+    </>
   );
 };
 
