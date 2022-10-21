@@ -21,9 +21,9 @@ const InfoModal: React.FC<{
 
   const getRealEstateDetail = async (latitude: number, longitude: number) => {
     if (latitude !== 0 && longitude !== 0) {
-      const url = `https://back-lpzceixskq-de.a.run.app/realestate/detail/latlon?latitude=${latitude}&longitude=${longitude}`;
-      // const url = `http://localhost:8080/realestate/detail/latlon?latitude=${latitude}&longitude=${longitude}`;
-      window.alert("InfoModal url" + url);
+      // const url = `https://back-lpzceixskq-de.a.run.app/realestate/detail/latlon?latitude=${latitude}&longitude=${longitude}`;
+      const url = `http://localhost:8080/realestate/detail/latlon?latitude=${latitude}&longitude=${longitude}`;
+      // window.alert("InfoModal url" + url);
       // console.log("InfoModal url", url);
       // setRealEstateDetail([
       //   {
@@ -35,10 +35,10 @@ const InfoModal: React.FC<{
         .then((res: any) => res.json())
         .then((data) => {
           setRealEstateDetail(data.RealEstateDetails);
-          window.alert("InfoModal data.Realestates" + data.Realestates);
+          // window.alert("InfoModal data.Realestates" + data.Realestates);
         })
         .catch((err) => {
-          window.alert("Failed to get API!");
+          // window.alert("Failed to get API!");
         });
     }
   };
@@ -106,104 +106,78 @@ const InfoModal: React.FC<{
               </div>
               <table className="modal-table">
                 <tbody className="modal-tbody">
-                  <tr>
-                    <th>タイプ</th>
-                    {realEstateDetail[0].property_type ? (
-                      <td>{realEstateDetail[0].property_type}</td>
-                    ) : (
-                      <td></td>
-                    )}
-                  </tr>
+                  {realEstateDetail[0].price ? (
                   <tr>
                     <th>値段</th>
-                    {realEstateDetail[0].price ? (
-                      <td>{realEstateDetail[0].price} 円</td>
-                    ) : (
-                      <td></td>
-                    )}
+                    <td>{realEstateDetail[0].price} 円</td>
                   </tr>
-                  <tr>
-                    <th>敷地面積</th>
-                    {realEstateDetail[0].area ? (
-                      <td>
-                        {realEstateDetail[0].area} m<sup>2</sup>
-                      </td>
-                    ) : (
-                      <td></td>
-                    )}
-                  </tr>
+                   ) : (
+                    null
+                  )}
+                  {realEstateDetail[0].year_builds ? (
                   <tr>
                     <th>設立年</th>
-                    {realEstateDetail[0].year_builds ? (
-                      <td>{realEstateDetail[0].year_builds} 年</td>
-                    ) : (
-                      <td></td>
-                    )}
+                    <td>{realEstateDetail[0].year_builds} 年</td>
                   </tr>
+                  ) : (
+                   null
+                  )}
+                  {realEstateDetail[0].address ? (
                   <tr>
                     <th>住所</th>
-                    {realEstateDetail[0].address ? (
-                      <td>{realEstateDetail[0].address}</td>
-                    ) : (
-                      <td></td>
-                    )}
+                    <td>{realEstateDetail[0].address}</td>
                   </tr>
+                  ) : (
+                   null
+                  )}
+                   {realEstateDetail[0].room_count ? (
                   <tr>
                     <th>部屋数</th>
-                    {realEstateDetail[0].room_count ? (
-                      <td>{realEstateDetail[0].room_count}</td>
-                    ) : (
-                      <td></td>
-                    )}
+                    <td>{realEstateDetail[0].room_count}</td>
                   </tr>
+                  ) : (
+                   null
+                  )}
+                  {realEstateDetail[0].propety_storucture ? (
                   <tr>
                     <th>構造</th>
-                    {realEstateDetail[0].propety_storucture ? (
-                      <td>{realEstateDetail[0].propety_storucture}</td>
-                    ) : (
-                      <td></td>
-                    )}
+                    <td>{realEstateDetail[0].propety_storucture}</td>
                   </tr>
+                  ) : (
+                   null
+                  )}
+                  {realEstateDetail[0].total_ground_story ? (
                   <tr>
                     <th>階数</th>
-                    {realEstateDetail[0].total_ground_story ? (
-                      <td>{realEstateDetail[0].total_ground_story} 階</td>
-                    ) : (
-                      <td></td>
-                    )}
+                    <td>{realEstateDetail[0].total_ground_story} 階</td>
                   </tr>
+                  ) : (
+                   null
+                  )}
+                  {realEstateDetail[0].under_ground_story ? (
                   <tr>
                     <th>地下階数</th>
-                    {realEstateDetail[0].under_ground_story ? (
-                      <td>{realEstateDetail[0].under_ground_story} 階</td>
-                    ) : (
-                      <td></td>
-                    )}
+                    <td>{realEstateDetail[0].under_ground_story} 階</td>
                   </tr>
-                  <tr>
-                    <th>ユニット数</th>
-                    {realEstateDetail[0].total_unit ? (
-                      <td>{realEstateDetail[0].total_unit}</td>
-                    ) : (
-                      <td></td>
-                    )}
-                  </tr>
+                  ) : (
+                   null
+                  )}
+                  {realEstateDetail[0].fee ? (
                   <tr>
                     <th>賃貸料</th>
-                    {realEstateDetail[0].fee ? (
-                      <td>{realEstateDetail[0].fee} 円</td>
-                    ) : (
-                      <td></td>
-                    )}
+                    <td>{realEstateDetail[0].fee} 円</td>
                   </tr>
+                  ) : (
+                    null
+                   )}
+                  {realEstateDetail[0].facility ? (
                   <tr>
                     <th>設備</th>
-                    {realEstateDetail[0].facility ? (
-                      <td>{realEstateDetail[0].facility}</td>
-                    ) : (
-                      <td></td>
-                    )}
+                    <td>{realEstateDetail[0].facility}</td>
                   </tr>
+                   ) : (
+                    null
+                   )}
                 </tbody>
               </table>
             </div>
