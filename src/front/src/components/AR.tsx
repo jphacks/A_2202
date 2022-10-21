@@ -15,34 +15,34 @@ const AR: React.FC<{
 
   const getRealEstates = async (latitude: number, longitude: number) => {
     if (latitude !== 0 && longitude !== 0) {
-      // const url = `https://back-lpzceixskq-de.a.run.app/realestate?latitude=${latitude}&longitude=${longitude}`;
-      const url = `http://localhost:8080/realestate?latitude=${latitude}&longitude=${longitude}`;
-      // window.alert("AR url" + url);
-      console.log("AR url", url);
-      setRealEstates([
-        {
-          id: "82ddbc14-9284-4ca8-abc0-037e6eaed6c3",
-          name: "Daiki",
-          latitude: 37.492151723031024,
-          longitude: 139.94461074269023,
-        },
-        {
-          id: "82ddbc14-9284-4ca8-abc0-nice",
-          name: "Sakuma",
-          latitude: 37.4922,
-          longitude: 139.94461074269023,
-        },
-      ]);
-      // await fetch(url)
-      //   .then((res: any) => res.json())
-      //   .then((data) => {
-      //     setRealEstates(data.Realestates);
-      //     console.log("AR data.Realestates", data.Realestates);
-      //     // window.alert("AR data.Realestates" + data.Realestates);
-      //   })
-      //   .catch((err) => {
-      //     window.alert("Failed to get API!");
-      //   });
+      const url = `https://back-lpzceixskq-de.a.run.app/realestate?latitude=${latitude}&longitude=${longitude}`;
+      // const url = `http://localhost:8080/realestate?latitude=${latitude}&longitude=${longitude}`;
+      window.alert("AR url" + url);
+      // console.log("AR url", url);
+      // setRealEstates([
+      //   {
+      //     id: "82ddbc14-9284-4ca8-abc0-037e6eaed6c3",
+      //     name: "Daiki",
+      //     latitude: 37.492151723031024,
+      //     longitude: 139.94461074269023,
+      //   },
+      //   {
+      //     id: "82ddbc14-9284-4ca8-abc0-nice",
+      //     name: "Sakuma",
+      //     latitude: 37.4922,
+      //     longitude: 139.94461074269023,
+      //   },
+      // ]);
+      await fetch(url)
+        .then((res: any) => res.json())
+        .then((data) => {
+          setRealEstates(data.Realestates);
+          // console.log("AR data.Realestates", data.Realestates);
+          window.alert("AR data.Realestates" + data.Realestates);
+        })
+        .catch((err) => {
+          window.alert("Failed to get API!");
+        });
     }
   };
 
