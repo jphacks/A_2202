@@ -1,12 +1,21 @@
 # サンプル（プロダクト名）
 
-- https://naiken-quest.web.app/
+- [いえサガシ△](https://naiken-quest.web.app/)
 
 [![IMAGE ALT TEXT HERE](https://jphacks.com/wp-content/uploads/2022/08/JPHACKS2022_ogp.jpg)](https://www.youtube.com/watch?v=LUPQFB4QyVo)
 
 ## 製品概要
 
+- 物件探し
+- AR
+- あなたの好きな街のあなたの好きな場所で1秒で物件探しをできる
+
 ### 背景(製品開発のきっかけ、課題等）
+
+- 物件を探すとき...
+  - 情報が多すぎて何を調べればいいかわからない
+  - 調べるのに時間がかかる
+  - 物件探しが退屈
 
 ### 製品説明（具体的な製品の説明）
 
@@ -22,24 +31,41 @@
 
 ### 今後の展望
 
+- もっと物件探しが楽に楽しくなるように...
+  - ARキャラに説明してもらう
+  - その町の災害情報などを記載
+
 ### 注力したこと（こだわり等）
 
--
--
+- ARで現在の緯度経度を使用して
+- プロダクトロゴやARオブジェクト、ローディングGIFを自作
 
 ## 開発技術
 
+- TS
+- Go
+- docker
+- GCP
+- Figma
+- blender
+
 ### 活用した技術
+
+- AR
+- GeoLocation
 
 #### API・データ
 
--
+- LANDNET
 -
 
 #### フレームワーク・ライブラリ・モジュール
 
--
--
+- [React](https://reactjs.org/)
+- [TypeScript](https://www.typescriptlang.org/)
+- [Joy UI](https://mui.com/joy-ui/getting-started/overview/)
+- [A-FRAME](https://aframe.io/)
+- [AR.js](https://ar-js-org.github.io/AR.js-Docs/)
 
 #### デバイス
 
@@ -61,6 +87,6 @@
 ### 開発手順
 
 - branch
-  - feature/github-name/xxxx
-- issue -> PR -> develop -> main(deploy)
-- [prefix rule](https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#type)
+  - feature/{github-name}/{branch-name}
+- Issue -> PR -> develop -> main(deploy)
+- [Prefix rule](https://github.com/angular/angular.js/blob/master/DEVELOPERS.md#type)
