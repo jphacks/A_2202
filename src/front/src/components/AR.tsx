@@ -86,7 +86,7 @@ const AR: React.FC<{
   return (
     <>
       <ACamera
-        gps-Camera="maxDistance: 100; gpsMinDistance: 0"
+        gps-Camera="maxDistance: 1000; gpsMinDistance: 0"
         rotation-Reader=""
         // cursor="rayOrigin: mouse; fuse:false"
         // camera=""

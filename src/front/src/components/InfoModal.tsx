@@ -170,14 +170,14 @@ const InfoModal: React.FC<{
                   ) : (
                     null
                    )}
-                  {realEstateDetail[0].facility ? (
+                  {/* {realEstateDetail[0].facility ? (
                   <tr>
                     <th>設備</th>
                     <td>{realEstateDetail[0].facility}</td>
                   </tr>
                    ) : (
                     null
-                   )}
+                   )} */}
                 </tbody>
               </table>
             </div>
