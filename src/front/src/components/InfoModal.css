@@ -1,21 +1,51 @@
 .wrapper{
     display: flex;
     flex-direction: row;
-    margin-bottom: 3rem;
+    padding:1rem;
 }
 .next-to-close-button {
-    width: 90%;
+    border-radius: 1rem;
+    padding-bottom: 1rem;
+    width: 100%;
     margin-right: 5%;
-    background-color: rgba(169, 236, 236, 0.353);
+   
+}
+.close-button {
+    width: 2rem;
+    height: 2rem;
+    border: none;
+    background: transparent;
+    border-radius: 50%; 
+}
+.close-button:hover {
+    background-color:#f18e4385;
+}
+.close-button-color {
+   color:rgb(63, 62, 62)
 }
 table {
     border-collapse:  collapse; /* セルの線を重ねる */
+    margin-bottom: 1rem;
 }
- 
-tr:nth-child(odd) {
-    background-color:  #ddd;    /* 背景色指定 */
+tr{
+    border-bottom: solid;
+    border-bottom-color: #75cdd94e;
+    padding: 0.8rem 0;
 }
- 
-th,td {
+th{
+    width: 30%;
     padding: 5px 10px;          /* 余白指定 */
+    color: gray;
+}
+td {
+    width: 70%;
+    color: gray;
+}
+tr:nth-child(odd) {
+    border-bottom-color: #f18e4346;
+}
+.title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: gray;
 }

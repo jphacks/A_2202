@@ -7,7 +7,7 @@ import Modal from 'react-modal';
 import ModalClose from "@mui/joy/ModalClose";
 import ModalDialog from "@mui/joy/ModalDialog";
 import Typography from "@mui/joy/Typography";
-import Card from '@mui/joy/Card';
+import Sheet from '@mui/joy/Sheet';
 import CloseIcon from '@mui/icons-material/Close';
 
 
@@ -52,88 +52,85 @@ const InfoModal: React.FC<{
       bottom: 'auto',
       marginRight: '-50%',
       transform: 'translate(-50%, -50%)',
+      borderRadius: '7%',
+      padding: '1.6rem 2.3rem'
     },
   };
 
   return (
     <div id="modal">
-      <Button variant="soft" color="primary" onClick={() => setIsOpen(true)}>
+      <Button color="primary" onClick={() => setIsOpen(true)}>
         Information
       </Button>
       <Modal
       style={customStyles}
       isOpen={modalIsOpen} onRequestClose={() => setIsOpen(false)} >
-      <div className="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+      <div>
         {realEstateDetail.length !== 0
           ?
           <div>
             <div className="wrapper">
-              <Card className="next-to-close-button">
-                <Typography>
+              <div className="next-to-close-button">
+                <Typography className="title">
                   {realEstateDetail[0].name}
                 </Typography >
-              </Card>
+              </div>
               <div className="px-4 py-3">
-                <Button color="danger" size="sm" variant="soft" disabled={false} onClick={() => setIsOpen(false)}><CloseIcon/></Button>
+                <button className="close-button" onClick={() => setIsOpen(false)}><CloseIcon className="close-button-color"/></button>
               </div>
             </div>
             <table className="modal-table">
               <tbody className="modal-tbody">
                   <tr>
-                      <th>見出し</th>
-                      <td>テキストが入ります</td>
-                      <td>テキストが入ります</td>
-                      <td>テキストが入ります</td>
+                    <th>タイプ</th>
+                    {realEstateDetail[0].property_type ? <td>{realEstateDetail[0].property_type}</td> : <td></td>}
                   </tr>
                   <tr>
-                      <th>見出し</th>
-                      <td>テキストが入ります</td>
-                      <td>テキストが入ります</td>
-                      <td>テキストが入ります</td>
+                    <th>値段</th>
+                    {realEstateDetail[0].price ? <td>{realEstateDetail[0].price} 円</td> : <td></td>}
                   </tr>
                   <tr>
-                      <th>見出し</th>
-                      <td>テキストが入ります</td>
-                      <td>テキストが入ります</td>
-                      <td>テキストが入ります</td>
+                      <th>敷地面積</th>
+                      {realEstateDetail[0].area ? <td>{realEstateDetail[0].area} m<sup>2</sup></td> : <td></td>}
                   </tr>
                   <tr>
-                      <th>見出し</th>
-                      <td>テキストが入ります</td>
-                      <td>テキストが入ります</td>
-                      <td>テキストが入ります</td>
+                    <th>設立年</th>
+                    {realEstateDetail[0].year_builds ? <td>{realEstateDetail[0].year_builds} 年</td> : <td></td>}
                   </tr>
                   <tr>
-                      <th>見出し</th>
-                      <td>テキストが入ります</td>
-                      <td>テキストが入ります</td>
-                      <td>テキストが入ります</td>
+                      <th>住所</th>
+                      {realEstateDetail[0].address ? <td>{realEstateDetail[0].address}</td> : <td></td>}
+                  </tr>
+                  <tr>
+                    <th>部屋数</th>
+                    {realEstateDetail[0].room_count ? <td>{realEstateDetail[0].room_count}</td> : <td></td>}
+                  </tr>
+                  <tr>
+                      <th>構造</th>
+                      {realEstateDetail[0].propety_storucture ? <td>{realEstateDetail[0].propety_storucture}</td> : <td></td>}
+                  </tr>
+                  <tr>
+                    <th>階数</th>
+                    {realEstateDetail[0].total_ground_story ? <td>{realEstateDetail[0].total_ground_story} 階</td> : <td></td>}
+                  </tr>
+                  <tr>
+                      <th>地下階数</th>
+                      {realEstateDetail[0].under_ground_story ? <td>{realEstateDetail[0].under_ground_story} 階</td> : <td></td>}
+                  </tr>
+                  <tr>
+                    <th>ユニット数</th>
+                    {realEstateDetail[0].total_unit ? <td>{realEstateDetail[0].total_unit}</td> : <td></td>}
+                  </tr>
+                  <tr>
+                      <th>賃貸料</th>
+                      {realEstateDetail[0].fee ? <td>{realEstateDetail[0].fee} 円</td> : <td></td>}
+                  </tr>
+                  <tr>
+                      <th>設備</th>
+                      {realEstateDetail[0].facility ? <td>{realEstateDetail[0].facility}</td> : <td></td>}
                   </tr>
               </tbody>
             </table>
-            <Typography
-              fontSize="1.2em"
-              mb="0.25em"
-            >
-              建物名
-            </Typography>
-            <Typography textColor="inherit">
-              {realEstateDetail[0].name}
-            </Typography>
-            <Typography
-              fontSize="1.2em"
-              mb="0.25em"
-            >
-              種類
-            </Typography>
-            <Typography textColor="inherit">
-              {realEstateDetail[0].property_type} 円
-            </Typography>
-            <Typography
-              fontSize="1.2em"
-              mb="0.25em"
-            >
-            </Typography>
         </div>
       : "No Data"}
       </div>
