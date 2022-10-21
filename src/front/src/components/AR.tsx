@@ -92,36 +92,21 @@ const AR: React.FC<{
         // camera=""
       />
 
-      {Array.isArray(realEstates) ? (
-        realEstates.map((realEstate) => {
-          return (
-            <>
-              <AAsset>
-                <AAsetItem id="pin" src="/assets/pin.glb"></AAsetItem>
-              </AAsset>
-              <AEntity
-                look-At={"[gps-camera]"}
-                gps-Entity-Place={`latitude: ${realEstate.latitude}; longitude: ${realEstate.longitude};`}
-                gltf-Model={"#pin"}
-                scale={"1 1 1"}
-              />
-            </>
-          );
-        })
-      ) : (
-        <img
-          style={{
-            position: "absolute",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%,-50%)",
-          }}
-          src={
-            "https://steamuserimages-a.akamaihd.net/ugc/2424501685492373296/AEC2AAF34A10B04F5C2539AF2D5EB6F27C0D6922/"
-          }
-          alt="Please wait until the page loads."
-        />
-      )}
+      {realEstates.map((realEstate) => {
+        return (
+          <>
+            <AAsset>
+              <AAsetItem id="pin" src="/assets/pin.glb"></AAsetItem>
+            </AAsset>
+            <AEntity
+              look-At={"[gps-camera]"}
+              gps-Entity-Place={`latitude: ${realEstate.latitude}; longitude: ${realEstate.longitude};`}
+              gltf-Model={"#pin"}
+              scale={"1 1 1"}
+            />
+          </>
+        );
+      })}
 
       {/* <AText
           {...commonProps}
