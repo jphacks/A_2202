@@ -10,7 +10,7 @@ const App = () => {
   const [longitude, setLongitude] = useState<number>(0);
 
   if (!navigator.geolocation) {
-    window.alert("Your browser doesn't support Geolocation.");
+    // window.alert("Your browser doesn't support Geolocation.");
   } else {
     navigator.geolocation.getCurrentPosition(
       (position) => {
@@ -18,7 +18,7 @@ const App = () => {
         setLongitude(position.coords.longitude);
       },
       () => {
-        window.alert("Failed to get your location!");
+       // window.alert("Failed to get your location!");
       }
     );
   }
