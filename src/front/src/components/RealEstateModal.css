@@ -25,6 +25,7 @@
 table {
   border-collapse: collapse; /* セルの線を重ねる */
   margin-bottom: 1rem;
+  width: 100%;
 }
 tr {
   border-bottom: solid;
