@@ -16,8 +16,8 @@ const RealEstateModal: React.FC<{
 
   const getRealEstateDetail = async (latitude: number, longitude: number) => {
     if (latitude !== 0 && longitude !== 0) {
-      const url = `https://back-lpzceixskq-de.a.run.app/realestate/detail/latlon?latitude=${latitude}&longitude=${longitude}`;
-      // const url = `http://localhost:8080/realestate/detail/latlon?latitude=${latitude}&longitude=${longitude}`;
+      // const url = `https://back-lpzceixskq-de.a.run.app/realestate/detail/latlon?latitude=${latitude}&longitude=${longitude}`;
+      const url = `http://localhost:8080/realestate/detail/latlon?latitude=${latitude}&longitude=${longitude}`;
       // console.log("InfoModal url", url);
       // setRealEstateDetail([
       //   {
@@ -54,7 +54,7 @@ const RealEstateModal: React.FC<{
       bottom: "auto",
       marginRight: "-50%",
       transform: "translate(-50%, -50%)",
-      borderRadius: "7%",
+      borderRadius: "3rem",
       padding: "1.6rem 2.3rem",
     },
   };
