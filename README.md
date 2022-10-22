@@ -1,31 +1,29 @@
-# サンプル（プロダクト名）
+# [いえサガシ △](https://naiken-quest.web.app/)
 
-- [いえサガシ △](https://naiken-quest.web.app/)
-
-[![IMAGE ALT TEXT HERE](https://jphacks.com/wp-content/uploads/2022/08/JPHACKS2022_ogp.jpg)](https://www.youtube.com/watch?v=LUPQFB4QyVo)
+[![IMAGE ALT TEXT HERE](https://lh3.googleusercontent.com/pw/AL9nZEVFQhjwp1fD1wkoyEVvi8GolEtcVn07VxizJamRz4HG4LfVA9H0UjmD1ehLrQ7mY1MS0ZZkRAoU3-WLXbRDHgBSYKJqZYt6D8StsDXyJPQVleeLu4OERJkMHEnwz9IYikgnwXzJu9brUpVuogVxyWHp=w2000-h585-no?authuser=0)](https://naiken-quest.web.app/)
 
 ## 製品概要
 
-- 物件探し
-- AR
-- あなたの好きな街のあなたの好きな場所で 1 秒で物件探しをできる
+- AR を用いてあなたの好きな街のあなたの好きな場所で一秒で物件探しを
 
 ### 背景(製品開発のきっかけ、課題等）
 
-- 物件を探すとき...
+- 従来の不動産検索プラットフォームで感じられる以下の課題を解決
   - 情報が多すぎて何を調べればいいかわからない
   - 調べるのに時間がかかる
   - 物件探しが退屈
 
 ### 製品説明（具体的な製品の説明）
 
+- 現在地情報をもとに取得した物件情報を AR を用いて可視化。地図が苦手な人や住みたい明確な位置が決まっている人が即座にその周辺物件を調べることができる。中央下部に設置してある information ボタンを押すことで物件の詳細情報を取得することが可能。native application ではなく web application にすることでアプリをインストールする障壁を取り払うことができるのでキャッチコピー通り一秒で物件探しをすることができる。
+
 ### 特長
 
-#### 1. 特長 1
+#### 1. AR で物件を可視化
 
-#### 2. 特長 2
+#### 2. 現在地周辺の物件を即座に探せる
 
-#### 3. 特長 3
+#### 3. アプリインストールなし、ログインなしユーザーの楽に寄り添ったアプリ
 
 ### 解決出来ること
 
@@ -34,6 +32,8 @@
 - もっと物件探しが楽に楽しくなるように...
   - AR キャラに説明してもらう
   - その町の災害情報などを記載
+- 物件だけでなく近くの商業施設、宿泊施設探しも便利に...
+- さらに詳細情報を見たい人向けに不動産プラットフォームの作成、動線の作成
 
 ### 注力したこと（こだわり等）
 
@@ -44,7 +44,7 @@
 
 - TS
 - Go
-- docker
+- Docker
 - GCP
 - Figma
 - blender
@@ -56,8 +56,8 @@
 
 #### API・データ
 
-- LANDNET
--
+- LANDNET API
+- Google Map Platform API
 
 #### フレームワーク・ライブラリ・モジュール
 
@@ -66,13 +66,15 @@
 - [Joy UI](https://mui.com/joy-ui/getting-started/overview/)
 - [A-FRAME](https://aframe.io/)
 - [AR.js](https://ar-js-org.github.io/AR.js-Docs/)
+- [echo](https://echo.labstack.com/)
 
 #### デバイス
 
--
--
+- Web Application
 
 ### 独自技術
+
+- 現在地情報(緯度経度)をもとにランドネットで提供されてる物件の最も現在地に近い物件を取得する。
 
 #### ハッカソンで開発した独自機能・技術
 
