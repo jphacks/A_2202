@@ -54,7 +54,7 @@ const RealEstateModal: React.FC<{
       bottom: "auto",
       marginRight: "-50%",
       transform: "translate(-50%, -50%)",
-      borderRadius: "7%",
+      borderRadius: "3rem",
       padding: "1.6rem 2.3rem",
     },
   };
