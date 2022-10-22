@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import AScene from "./components/aframe/AScene";
 import AR from "./components/AR";
-import InfoModal from "./components/InfoModal";
+import RealEstateModal from "./components/RealEstateModal";
 
 const App = () => {
-  const [showComponent, setShowComponent] = useState(false);
-  const [showComponent2, setShowComponent2] = useState(false);
+  const [showComponent, setShowComponent] = useState<boolean>(false);
+  const [showComponent2, setShowComponent2] = useState<boolean>(false);
   const [latitude, setLatitude] = useState<number>(0);
   const [longitude, setLongitude] = useState<number>(0);
 
@@ -40,7 +40,7 @@ const App = () => {
     }
   }, [showComponent]);
 
-  const gif = () => {
+  const loadingGif = () => {
     return (
       <img
         style={{
@@ -78,9 +78,9 @@ const App = () => {
         {showComponent2 && <AR latitude={latitude} longitude={longitude} />}
       </AScene>
       {showComponent2 && (
-        <InfoModal latitude={latitude} longitude={longitude} />
+        <RealEstateModal latitude={latitude} longitude={longitude} />
       )}
-      {showComponent && gif()}
+      {showComponent && loadingGif()}
     </>
   );
 };
