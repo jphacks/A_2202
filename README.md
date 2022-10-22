@@ -55,7 +55,7 @@
 - Docker
 - GCP
 - Figma
-- blender
+- Blender
 
 ### 活用した技術
 
